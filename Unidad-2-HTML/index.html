@@ -1,0 +1,46 @@
+<!-- 
+W3C: World Wide Web Consortium, los encargados de decir que se puede hacer y como se debe hacer.
+Las paginas modernas tienen esta estructura base, siempre un <html> que contiene a <head> y a <body>
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Contiene la lista de metadatos (configuraciones) de la pagina -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina web</title>
+</head>
+<body>
+
+    <!-- SEO: Search engine optimization -->
+    <!-- todo lo que se ve en el viewport es parte del body -->
+
+    <!-- heading
+    Las etiquetas de heading se usan para escribir un texto de encabezado con jerarquia e importancia
+    La jerarquia no tiene NADA que ver con los estilos, la jerarquia es la que el desarrollador indique
+
+    h1...h6
+    -->
+    <!-- titulo -->
+    <h1>Las mejores empanadas</h1>
+
+    <div><!-- Dividir y contener -->
+        <h2>Empanadas de carne</h2>
+        <p>Estas empanadas son ideales para cuando tenes el bajon.</p>
+        <!-- target='_blank' nos permite abrir la pagina en otra pestaña -->
+        <a href="https://www.paulinacocina.net/como-hacer-empanadas-de-carne/9220" target="_blank">
+            Click aqui para ver la receta de paulina cocina
+        </a>
+        <!-- br se usa para hacer un salto de linea -->
+        <br>
+        <a href="./pages/detalle-empanada-carne.html">Click aqui para ver mi receta</a>
+    </div>
+    
+    <div>
+        <h2>Empanadas de pollo</h2>
+        <p>Estas empanadas son ideales para cuando hace frio.</p>
+    </div>
+    
+</body>
+</html>
