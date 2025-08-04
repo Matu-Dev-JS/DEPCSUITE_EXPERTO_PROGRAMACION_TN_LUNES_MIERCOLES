@@ -1,0 +1,70 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Sintaxis de CSS */
+
+/* CSS tiene selectores */
+/* Quiero hacer que los botones sean de color de fondo azul */
+/* Podemos usar el selector de elementos */
+button {
+    background-color: blue;
+    color: white;
+}
+
+body {
+    background-color: rgb(201, 201, 201);
+}
+
+/* Selector de clase */
+
+.boton{
+    border-radius: 10px !important;
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    color: white;
+}
+
+.boton-principal {
+    background-color: blueviolet;
+    color: white;
+}
+
+.boton-secundario {
+    background-color: transparent;
+    color: blueviolet;
+}
+
+.boton-especial{
+    cursor: wait;
+    background-color: blueviolet;
+    border-radius: 20px;
+}
+
+
+/* Especificadad */
+/* El estilo mas especifico es el que va a prevalecer */
+
+.texto-generico{
+    color: blueviolet;
+}
+
+span{
+    color: red !important;
+    background-color: rgb(3, 247, 255);
+}
+
+.texto-test{
+    color: blue;
+}
+
+
+/* Suma de especificidades */
+.caja span{
+    color: yellow;
+}
+
+#span-especial{
+    color: pink !important;
+}
