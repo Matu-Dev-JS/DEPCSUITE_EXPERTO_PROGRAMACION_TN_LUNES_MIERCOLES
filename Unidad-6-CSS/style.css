@@ -1,0 +1,131 @@
+/* @import le indica al navegador que cargue x codigo de css */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* normalizacion */
+*{
+    /* Ahora el ancho y el alto determinaran el tamaño de la caja de borde Y NO LA DE CONTENIDO */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    padding: 0 40px;
+}
+
+.caja{
+    width: 200px; /* Defino el ancho de la border-box */
+    height: 200px; /* Definiendo el alto de la border-box */
+    background-color: red;
+    border: 0px blue solid;
+    border-right: 0px yellow dotted;
+    border-radius: 10px;
+    padding-left: 10px;
+    border-bottom: 1px;
+    margin-bottom: 20px;
+    /* x, y, blur/difuminado, spread, color */
+    box-shadow: 
+    0px 0px 10px 0px rgb(0, 0, 0),
+    200px 0px 10px 0px rgb(255, 0, 0)
+    ;
+    font-family: "Poppins", sans-serif;
+    /* Maneja que tan pesada se vera la fuente (que tan negrita) */
+    font-weight: 700;
+    /* Tamaño de fuente */
+    font-size: 28px;
+    /* Espaciado entre palabras */ 
+    word-spacing: 10px;
+    /* Espaciado entre letas */
+    letter-spacing: 5px;
+
+    /* Por defecto box-sizing es content box */
+    /* box-sizing: content-box; */
+    
+    /* 
+    20px de padding para todos los lados
+    padding: 20px; 
+    
+    20px de padding vertical y 40px de padding horizontal
+    padding: 20px 40px;
+
+    20px de padding hacia arriba, 40px de padding horizontal y 30px de padding hacia abajo
+    padding 20px 40px 30px
+
+    20px de padding hacia arriba, 30px de padding a la derecha, 40px de padding hacia abajo y 50px de padding hacia la izquierda
+    padding; 20px 30px 40px 50px;
+    */
+    /*  overflow-x: auto;
+    overflow-y: auto; */
+}
+
+.parrafo{
+    text-align: justify;
+    /* width: 300px; */
+    /* height: 300px; */
+}
+
+
+span{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}
+
+.caja-2{
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+
+/* 
+Dar ancho y alto al contenido solo es valido para etiquetas block o inline-block
+
+Naturalmente las etiquetas tienen un display que puede ser 3 valores (inline, block e inline-block)
+Por ejemplo div por defecto es una etiqueta block
+Pero span por defecto es inline
+
+Inline:
+    -El ancho y el alto siempre es igual al contenido
+    -No se les puede definir ancho y alto
+    -Se colocan uno aldado del otro mientras puedan
+    Ejemplos:
+        -a
+        -span
+        -label
+        -b
+        
+Block:
+    -Se les puede definir ancho y alto
+    -Se colocan uno abajo del otro
+    Ejemplos:
+        -h1..h6
+        -p
+        -<div>
+        -header
+        -main
+        -section
+        -footer
+        -article
+        -form
+        -aside
+        -nav
+
+inline-block:
+    -Se les puede definir ancho y alto
+    -Se colocan uno aldado del otro mientras puedan
+    Ejemplos:
+        -<button>
+        -<input/>
+        -<textarea>
+        -<img/>
+        -<video>
+        -<iframe>
+*/
+
+h1{
+    background-color: black;
+    color: white;
+    text-shadow: 0px 0px 3px white;
+    font-family: "Dancing Script", cursive;
+
+}

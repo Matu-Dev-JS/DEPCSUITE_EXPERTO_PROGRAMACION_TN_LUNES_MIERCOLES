@@ -1,0 +1,70 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.contenedor{
+    width: 100%;
+    height: 100px;
+    background-color: blueviolet;
+    display: flex; /* --> Indicamos que .contenedor es un elemento flexible */
+    /* 
+    Que significa que es un elemento flexible?
+    Que se habilitaran las propiedades flexibles las cuales tienen sus valores por defecto:
+        -flex-direction: row; -> Direccion del flexbox (Column, Row)
+        -gap: 0px; -> espaciado entre hijos
+        -justify-content: flex-start;
+        -aling-items: flex-start;
+    Cuando un elemento padre es flexible los hijos por defecto pasaran a comportarse de formas distintas
+    Ejemplo:
+        -Si un hijo no tiene un alto y es hijo de un padre flexible con direccion row, el hijo tomara el alto del padre
+        -Si un hijo no tiene un ancho y es hijo de un padre flexible con direccion column el hijo tomara todo el ancho del padre
+
+    Justify content y Align items
+    Dependiendo de la direccion del flexbox pueden comportarse de distinta manera:
+        -SI EL FLEX-DIRECTION ES ROW: 
+            -Justify-content: Ajustar en el eje X
+            -Align-items: Ajustar en el eje Y
+        -SI EL FLEX-DIRECTION ES COLUMN:
+            -Justify-content: Ajustar en el eje Y
+            -Align-items: Ajustar en el eje X
+    */
+
+    flex-direction: column ;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    width: 200px;
+}
+
+nav{
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* 
+justify-content: 
+    Si sobra ancho (flex-direction es row)/alto (si flex-direction es column) en el padre entonces justify-content podra usar los valores del spacing
+    Cuales son?
+        -space-between -> espacia a los hijos lo maximo posible entre si PERO NO HACIA LOS BORDES, el valor entre cada espacio entre hijos es el mismo
+        -space-evenly -> espacia a los hijos lo maximo posible entre si y hacia los bordes y el valor entre cada    espacio es el mismo
+        -space-around -> espaciar a los hijos lo posible entre si y hacia los bordes espaciara la mitad de lo que espacio entre cada hijo
+*/
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    height: 70px;
+    background-color: blueviolet;
+}
