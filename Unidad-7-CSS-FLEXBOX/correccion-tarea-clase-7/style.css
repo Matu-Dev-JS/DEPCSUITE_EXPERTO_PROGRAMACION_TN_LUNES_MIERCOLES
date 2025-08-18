@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+}
+
+body {
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+}
+
+
+.migration-section {
+    width: 100%;
+    height: 50%;
+    background-color: #1f1346;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 0 450px; */
+    /* consultar  */
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+.migration-section__content-container{
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.migration-header {
+    display: flex;
+    flex-direction: column;
+
+
+    padding-top: 60px;
+    align-items: center;
+    gap: 35px;
+
+}
+
+.migration-title {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+
+
+}
+
+.migration-description {
+    text-align: center;
+    line-height: 1.5;
+
+}
+
+.migration-card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 25px;
+}
+
+.migration-card-element {
+    flex: 1;
+    /* todas las cards van a ocupar el mismo ancho */
+    background-color: #2f1c6a;
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.migration-card-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #673de6;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.migration-card-icon{
+    svg{
+        width: 70%;
+        height: 70%;
+    }
+}
+
+.migration-card-subtitle {
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+.migration-card-description {
+    color: white;
+    font-weight: 500;
+}
+
+.migration-button {
+
+    background-color: #673de6;
+    padding: 15px 40px 15px 40px;   /* Al sentido de las agujas */
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+
+}
+
+.migration-button:hover {
+    background-color: #4820c0;
+}
+
+button.migration-button {
+    box-shadow: none;
+    outline: none;
+    border: none;
+}
+
+button.migration-button:focus,
+button.migration-button:active {
+    box-shadow: none;
+    outline: none;
+}
