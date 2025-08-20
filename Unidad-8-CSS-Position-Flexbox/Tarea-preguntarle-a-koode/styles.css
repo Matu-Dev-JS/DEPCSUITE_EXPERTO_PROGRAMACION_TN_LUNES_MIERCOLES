@@ -1,0 +1,38 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 500vh;
+}
+
+/* Preguntarle a Kodee */
+
+.button-kodee-container {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+}
+.button-kodee-container button {
+    background-color: #673DEC;
+    border-radius: 100px;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    gap: 8px;
+    justify-content: center;
+    line-height: 24px;
+    padding: 8px 16px;
+    border: none;
+    text-align: center;
+}
+span {
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}

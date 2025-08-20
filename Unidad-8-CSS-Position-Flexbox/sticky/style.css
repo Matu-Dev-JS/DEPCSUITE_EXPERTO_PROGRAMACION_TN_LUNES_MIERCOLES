@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.padre{
+    height: 500vh;
+    background-color: greenyellow;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hijo{
+    width: 200px;
+    height: 300px;
+    border-radius: 5px;
+    background-color: blueviolet;
+}
+
+
+
+.hijo:nth-child(2){
+    background-color: aqua;
+    position: sticky;
+    /* Siempre tiene que tener a 0px de distancia del bottom al hijo 2 hasta que llegue a su posicion original */
+    bottom: 0px;
+}

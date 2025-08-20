@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: rgb(47, 11, 82);
+}
+
+
+
+body .banner{
+    width: 350px;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    text-shadow: 0 0 3px white;
+    font-size: 18px;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    display: flex;
+}
+
+
+/* 
+Cuando estamos en desktop first siempre es de la mediaquery mas alta a la mas baja
+*/
+/* A partir de 768px hacia abajo empezaremos a aplicar este codigo de css */
+@media screen and (max-width: 768px) {
+    body .banner{
+        width: 250px;
+    }
+}
+
+
+@media screen and (max-width: 368px) {
+    body .banner{
+
+    }
+}

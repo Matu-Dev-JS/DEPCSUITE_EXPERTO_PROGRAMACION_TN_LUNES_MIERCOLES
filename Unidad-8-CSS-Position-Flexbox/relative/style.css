@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.padre{
+    height: 100vh;
+    background-color: greenyellow;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hijo{
+    width: 200px;
+    height: 300px;
+    border-radius: 5px;
+    background-color: blueviolet;
+}
+
+
+.hijo:nth-child(1){
+    z-index: 2;/* No hace falta que el elemento tenga position distinto de static para usar z index */
+}
+
+.hijo:nth-child(2){
+    background-color: aqua;
+    /* Cuando escribo position DISTINTO de 'static' se habilita el uso de 
+    top = arriba
+    buttom = abajo
+    left = izquierda
+    right = derecha
+    */
+    position: relative;
+    /* top tiene mas prioridad que bottom */
+    /* left tiene mas prioridad que right */
+
+    bottom: 50px;
+    right: 200px;
+    z-index: 3
+}

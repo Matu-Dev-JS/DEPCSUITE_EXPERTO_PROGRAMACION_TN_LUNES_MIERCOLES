@@ -1,0 +1,55 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+:root{
+    --primary-color: #fee500;
+    --gray-500: #737373;
+    --gray-400: #e6e6e6;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    background-color: var(--primary-color);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+
+}
+
+form{
+    width: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+form input{
+    width: 100%;
+    padding: 8px 16px;
+}
+
+button{
+    position: absolute;
+    right: 0px;
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid var(--gray-400);
+    width: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+button .bi-search{
+    color: var(--gray-500);
+}
+
+main{
+    height: 200vh;
+}

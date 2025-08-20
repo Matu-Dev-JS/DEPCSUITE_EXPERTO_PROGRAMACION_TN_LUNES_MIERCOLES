@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.padre{
+    height: 100vh;
+    background-color: greenyellow;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    position: relative;
+}
+
+.hijo{
+    width: 200px;
+    height: 300px;
+    border-radius: 5px;
+    background-color: blueviolet;
+}
+
+
+.hijo:nth-child(1){
+
+}
+
+.hijo:nth-child(2){
+    top: 10px;
+    background-color: aqua;
+    position: absolute;
+}
