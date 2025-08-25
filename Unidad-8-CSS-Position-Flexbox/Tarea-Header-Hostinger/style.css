@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    padding: 0%;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+}
+
+:root {
+    --primary-color: #673de6;
+    --primary-color-hover: #462b96;
+    --button-color: white;
+    --link-color: black;
+    --link-hover-color: #929292;
+    --background-color:white;
+}
+
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
+    font-size: 14px;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* NAVBAR */
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 35px;
+    position: sticky;
+    top: 0;
+    right: 0;   
+    background-color: white;
+
+}
+
+.navigation-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+}
+.navigation-container nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.navigation-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 35px;
+}
+
+.navigation-access-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.navigation-idiom {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.navigation-button {
+    border: 1px solid var(--link-color);
+    padding: 11px 15px;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.navigation-button:hover {
+    border: 1px solid var(--link-hover-color);
+}
+
+
+
+
+/*  BOTON PREGUNTARLE A  KODEE */
+
+
+
+body {
+    background: var(--background-color)
+}
+
+.container {
+    height: 3000px;
+    margin: 0 auto;
+}
+
+button {
+    border: none;
+    background-color: var(--button-color)
+}
+
+.kode-button {
+    background-color: var(--primary-color);
+    color: var(--button-color);
+    padding: 10px 25px;
+    border-radius: 100px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    font-weight: 600;
+}
+
+.kode-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+@media screen and (max-width: 900px) {
+    .navigation-container nav{
+        display: none;
+    }
+    .navigation-access-container{
+        display: none;
+    }
+}
