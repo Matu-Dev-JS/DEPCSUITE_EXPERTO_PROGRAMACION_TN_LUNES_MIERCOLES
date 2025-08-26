@@ -1,1 +1,76 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root{
+    --font-text: "DM Sans", sans-serif;
+    --primary-color-500: #683ee6;
+
+    --primary-color-200: #e0d9fa;
+    --primary-color-100: #f5f6ff;
+
+    --neutral-color-500: #1d1e20;
+    --neutral-color-200: #888faa;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-text);
+}
+
+/* Clases genericas */
+.title{
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--neutral-color-500);
+}
+
+.paragraph{
+    font-size: 14px;
+    color: var(--neutral-color-500);
+}
+
+.link{
+    font-weight: 600;
+    font-family: 14px;
+    color: var(--primary-color-500);
+    text-decoration: none;
+}
+
+.btn-secondary{
+    border: 2px solid var(--primary-color-500);
+    color: var(--primary-color-500);
+    font-weight: 500;
+    background-color: transparent;
+    padding: 8px 16px;
+    display: flex;
+    text-decoration: none;
+}
+
+
+
+/* Clase utilitaria */
+.text-center{
+    text-align: center;
+}
+
+.font-z-1{
+    font-size: 12px;
+}
+
+.font-z-2{
+    font-size: 16px;
+}
+
+.font-z-3{
+    font-size: 20px;
+}
+
+.font-z-4{
+    font-size: 24px;
+}
+
+.font-z-5{
+    font-size: 28px;
+}
