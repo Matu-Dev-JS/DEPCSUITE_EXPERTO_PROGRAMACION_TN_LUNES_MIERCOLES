@@ -1,0 +1,147 @@
+/* 
+GLOSARIO:
+s = Segundos = Medida de tiempo
+ms = milisegundos = Medida de tiempo (1s = 1000ms)
+deg = Grados = 360deg = 360grados
+scale(1.05) = Factor de escalado = 1.05 = 105% de porcentaje de escalado
+*/
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(27, 27, 98);
+}
+
+.padre{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+}
+
+.padre h1{
+    color: white;
+}
+
+/* Las animaciones se hacen con @keyframes */
+/* Las animaciones deben definirse */
+/* Las animaciones tienen un identificador (un nombre) */
+@keyframes aparecer-de-izq-a-der{
+    /* Debemos definir que ocurrira en esta animacion */
+    0%{
+        /* Al inicio muevo mi elemento a la izquierda 400px */
+        transform: translateX(-300px);
+        opacity: 0;
+    }
+    70%{
+        transform: translateX(100px);
+    }
+    100%{
+        /* Al final mi elemento se movera a la posicion original */
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes intermitencia{
+    0%{
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100%{
+        opacity: 0.1;
+    }
+}
+
+.banner{
+    /* Aplicar X animacion al banner */
+    /* animation-name: aparecer-de-izq-a-der;
+    animation-duration: 2s;
+    animation-timing-function: linear; */
+    /* animation-name: intermitencia;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite; */
+    border: 1px solid black;
+    width: 350px;
+    height: 100px;
+    border-radius: 8px;
+    background-color: white;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 15px;
+    margin-left: 20px;
+    margin-top: 20px;
+    transition: 300ms linear;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: 1;
+}
+
+.banner:hover{
+    transform: scale(1.05) rotateZ(1deg) translateX(20px);
+    background-color: rgb(255, 0, 0);
+    transition: 300ms linear;
+}
+
+.img-banner{
+    width: 210px;
+    position: absolute;
+    right: -80px;
+    transition: 800ms ease;
+    z-index: 3;
+}
+
+
+/* Cuando este encima del banner voy a cambiar estos estilos de la imagen hija */
+.banner:hover .img-banner{
+    right: -120px;
+    transition: 800ms ease;
+}
+
+.blue{
+    width: 0px;/* Inicialmente no tiene ancho */
+    height: 25px;/* Tiene que tener un alto para que se vea el recuadro azul */
+    background-color: aqua;/* La linea inicialmente sera azul */
+    position: absolute;/* Estara superpuesta en el banner */
+    left: 0;/* Hacia la izquierda */
+    bottom: 0;/* hacia abajo */
+    z-index: 2;/* Por encima del banner y por debajo de la imagen */
+}
+
+/* Cuando este encima del banner voy a cambiar estos estilos del recuadro azul hijo */
+.banner:hover .blue{
+    width: 100%;/* Crezca de 0px a 100% de ancho */
+    transition: 2000ms linear;/* A lo largo de 2 segundos */
+}
+
+
+@keyframes loading{
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}
+
+.loader{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border-right: 3px solid rgb(255, 255, 255);
+    background-color: transparent;
+    animation-name: loading;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
