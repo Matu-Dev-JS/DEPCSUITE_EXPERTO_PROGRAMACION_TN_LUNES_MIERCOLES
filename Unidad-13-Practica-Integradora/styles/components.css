@@ -1,0 +1,91 @@
+/* Componentes genericos */
+
+.button-terciary{
+    border: none;
+    background-color: transparent;
+}
+
+
+
+/* Header Component */
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 88px;
+    padding: 16px;
+}
+
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1200px;
+}
+
+.header-content__nav{
+    display: flex;
+    flex-direction: row;
+    gap: 34px
+}
+
+.header-content__nav .nav__link{
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--primary-color-950)
+}
+.header-content__nav .nav__link--active{
+    color: var(--primary-color-500);
+}
+
+.header-content__logo {
+
+}
+
+.header-content__logo h2{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.header-content__controls{
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+.header-content__controls .sun-icon{
+    color: var(--primary-color-950);
+}
+
+.header-content__controls .button-theme{
+    font-size: 24px;
+}
+
+.header-content__controls .button-lang{
+    font-size: 24px;
+}
+
+.header-content__controls .button-menu{
+    display: none;
+    font-size: 24px;
+}
+/* Cuando el ancho de la pagina sea menor a 1350px se aplicara este codigo */
+@media screen and (max-width: 1350px) {
+    .header-content__controls .button-menu{
+        display: flex;
+    }
+
+    .header-content__nav{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    header{
+        background-color: red;
+    }
+}
+
+/* End Header Component */
+
+

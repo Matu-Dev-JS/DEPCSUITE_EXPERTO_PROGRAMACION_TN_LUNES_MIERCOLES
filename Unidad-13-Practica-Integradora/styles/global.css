@@ -1,0 +1,26 @@
+:root{
+    --primary-color-500: #41644A;
+    --primary-color-50: #F0F5F1;
+    --primary-color-100: #E0EBE3;
+    --primary-color-200: #C1D7C7;
+    --primary-color-300: #A2C3AA;
+    --primary-color-400: #83AF8E;
+    --primary-color-600: #507C5B;
+    --primary-color-700: #3C5D44;
+    --primary-color-800: #283E2E;
+    --primary-color-900: #141F17;
+    --primary-color-950: #0A0F0B;
+    --text-font: "Poppins", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--text-font);
+}
+
+
+a{
+    text-decoration: none;
+}
