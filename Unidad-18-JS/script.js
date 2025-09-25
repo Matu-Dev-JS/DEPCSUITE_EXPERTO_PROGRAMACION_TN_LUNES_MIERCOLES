@@ -33,7 +33,7 @@ El nombre deberia ser de tipo string
 //Segun los principios SOLID, una funcion debe tener solo UNA responsabilidad en lo posible
 //Cual es la responsabilidad de la funcion saludar?
 //- Determinar el saludo
-function saludar( nombre ){
+/* function saludar( nombre ){
     let saludo = 'hola ' + nombre
     return saludo
 }
@@ -44,7 +44,7 @@ function saludarPorAlerta(nombre){
 
 console.log( saludar('pepe') )
 alert( saludar('maria') )
-document.write( saludar('pepesito') )
+document.write( saludar('pepesito') ) */
 //Que pasa si quiero saludar por consola?
 //Que pasa si quiero saludar por HTML?
 
@@ -73,6 +73,11 @@ false
  esVocal('e')
 true
 
+27)Necesitamos un programa que pida ingresar una cantidad de grados Celsius, mediante el siguiente mensaje:
+Ingresá una cantidad de grados Celsius
+Con esta información, el programa deberá mostrar la conversión de grados Celsius a grados Fahrenheit con el mensaje: La conversión de {grados} grados Celsius a Fahrenheit es: {resultado}
+
+
 */
 
 
@@ -88,7 +93,7 @@ true
 //- Si el usuario da al boton de aceptar se compromete a retornar el dato escrito por el usuario como un string
 //prompt()
 
-function esVocal(letra) {
+/* function esVocal(letra) {
     const a = "a";
     const e = "e";
     const i = "i";
@@ -97,4 +102,50 @@ function esVocal(letra) {
     if (letra !== a || letra !== e || letra !== i || letra !== o || letra !== u) {
         console.log("No es vocal");
     }
+} */
+
+
+/* 
+Una funcion llamada solicitarTexto(mensaje_solicitud, mensaje_error)
+La funcion solicitara un texto al usuario usando el mensaje solicitud por prompt
+Validar que el texto sea un texto (Que no sea numero, comillas vacias o null)
+Si el texto es invalido mostrar alerta de error y volver a solicitar
+Si el texto es valido retornarlo
+*/
+
+//let nombre = solicitarTexto('Ingresa tu nombre', 'El nombre es invalido')
+
+
+/* 
+Una funcion llamada solicitarNumero(mensaje_solicitud, mensaje_error)
+La funcion solicitara un numero al usuario usando el mensaje solicitud por prompt
+Validar que el texto sea un numero (Que no sea un texto, comillas vacias o null)
+Si el numero es invalido mostrar alerta de error y volver a solicitar
+Si el numero es valido retornarlo
+*/
+
+function solicitarDato (mensaje_solicitud, mensaje_error, validacionCallback){
+    let dato = prompt(mensaje_solicitud)
+    while( !validacionCallback(dato) ){
+        alert(mensaje_error)
+        dato = prompt(mensaje_solicitud)
+    }
+    return dato
 }
+
+
+//Quiero solicitar un numero
+function validarNumero (numero){
+    console.log('me ejecuto')
+    return numero && !isNaN(numero)
+}
+
+function validarNumeroPositivo (numero){
+
+    return numero && !isNaN(numero) && Number(numero) > 0
+}
+
+
+let numero = solicitarDato( 'Ingresa un numero', 'Error al ingresar numero', validarNumero )
+
+let numero_positivo = solicitarDato( 'Ingresa un numero', 'Error al ingresar numero', validarNumeroPositivo )
