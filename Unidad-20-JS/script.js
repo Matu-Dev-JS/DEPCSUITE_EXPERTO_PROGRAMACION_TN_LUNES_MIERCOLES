@@ -1,4 +1,4 @@
-let nombre_1 = 'pepe'
+/* let nombre_1 = 'pepe'
 let nombre_2 = 'juan'
 let nombre_3 = 'maria'
 
@@ -40,7 +40,7 @@ let maria = personas_que_me_caen_mal[1]
 
 console.log(maria.edad)
 
-console.log(personas_que_me_caen_mal.length)
+console.log(personas_que_me_caen_mal.length) */
 
 
 
@@ -51,23 +51,29 @@ console.log(personas_que_me_caen_mal.length)
 //A los arrays se los suele llamar tambien como: Listas, Arreglos, Matrices, Colecciones
 //Para acceder a un elemento del array debemos conocer su Indice
 
-let usuarios = []
+//let usuarios = []
 
 //Metodos
+//Los metodos pueden ser MUTABLES, osea que modifican el array en memoria o NO MUTABLES, osea que NO modifican el array en memoria
 //Para manipular un array existen metodos asociados al prototipo de los arrays
-//.push() Nos permite agregar un elemento al final de la lista
+//.push() Nos permite agregar un elemento al final de la lista (Mutables) (ESTE ES EL METODO MAS POPULAR)
+//.pop() Nos permite eliminar el ultimo elemento de la lista (Mutables)
+//.shift() Nos permite eliminar el primer elemento de la lista (Mutables)
+//.unshift() Nos permite agregar un elemento al inicio de la lista (Mutables)
 
-let nuevo_usuario = {
-    id: 1,
-    nombre: 'pepe',
-    edad: 40
-}
+//.splice() Nos permite recortar y agregar elementos al array
+//1er) parametro es la posicion desde donde queremos recortar
+//2do) parametro es cuantos elementos quiero recortar desde esa posicion
+//3er) parametro es que elemento quiero agregar a esa posicion
 
-usuarios.push(nuevo_usuario)
+//indexOf() Nos permite buscar el INDICE de x elemento (NO MUTABLE)
 
-console.log(usuarios)
+//let nombres = [ 'pepe', 'juan', 'maria']
 
-
+//eliminar a juan
+//let indice_de_juan = nombres.indexOf('juan')
+//nombres.splice(indice_de_juan, 1)
+//console.log(nombres)
 
 //Hacer un carrito
 //Crear una lista llamada carrito (Empezara vacia)
@@ -75,3 +81,101 @@ console.log(usuarios)
 //  -Precio (no hace falta validar)
 //  -Nombre (no hace falta validar)
 //  Crear un objeto con estas 2 propiedades y agregarlo a la lista carrito
+
+
+let carrito = [];
+
+
+/* for(
+    let i = 1; 
+    i <= 3; 
+    i = i + 1
+){
+    let nombre = prompt("Ingrese el nombre del producto:");
+    let precio = prompt("Ingrese el precio del producto:");
+    let producto = {
+        precio: Number(precio),
+        nombre
+    }
+    carrito.push({ producto });
+} */
+
+let usuarios = [ 
+    {
+        nombre: 'pepe',
+        edad: 60,
+        id: 1
+    },
+    {
+        nombre: 'maria',
+        edad: 30,
+        id: 2
+    },
+    {
+        nombre: 'pedro',
+        edad: 53,
+        id: 3
+    },
+    {
+        nombre: 'julieta',
+        edad: 83,
+        id: 4
+    },
+    {
+        nombre: 'amanda',
+        edad: 24,
+        id: 5
+    },
+    {
+        nombre: 'manuel',
+        edad: 21,
+        id: 6
+    },
+
+]
+
+//Quiero eliminar al usuario con nombre 'pedro' de mi lista de usuarios
+
+for(let index = 0; index < usuarios.length; index = index + 1){
+    let usuario = usuarios[index]
+
+    if(usuario.nombre === 'pedro'){
+        let posicion_pedro = usuarios.indexOf(usuario)
+        usuarios.splice(posicion_pedro, 1)
+    }
+}
+
+console.log(usuarios)
+
+
+let productos = [
+    {
+        nombre: 'TV samsung 32 pulgadas',
+        precio: 3000,
+        id: 1
+    },
+    {
+        nombre: 'TV samsung 40 pulgadas',
+        precio: 4000,
+        id: 2
+    },
+    {
+        nombre: 'TV samsung 50 pulgadas',
+        precio: 5000,
+        id: 3
+    },
+    {
+        nombre: 'TV samsung 60 pulgadas',
+        precio: 6000,
+        id: 4
+    },
+    {
+        nombre: 'TV samsung 70 pulgadas',
+        precio: 7000,
+        id: 5
+    }
+]
+
+/* 
+Crear una funcion que dado el id de un producto, pueda eliminar ese producto de la lista de productos
+*/
