@@ -61,12 +61,14 @@ console.log(personas_que_me_caen_mal.length) */
 //.shift() Nos permite eliminar el primer elemento de la lista (Mutables)
 //.unshift() Nos permite agregar un elemento al inicio de la lista (Mutables)
 
+
 //.splice() Nos permite recortar y agregar elementos al array
 //1er) parametro es la posicion desde donde queremos recortar
 //2do) parametro es cuantos elementos quiero recortar desde esa posicion
 //3er) parametro es que elemento quiero agregar a esa posicion
 
 //indexOf() Nos permite buscar el INDICE de x elemento (NO MUTABLE)
+//includes() Nos permite saber si cierto string esta dentro de la lista de strings (GENERALMENTE se usa con un array de strings)
 
 //let nombres = [ 'pepe', 'juan', 'maria']
 
@@ -99,8 +101,8 @@ let carrito = [];
     }
     carrito.push({ producto });
 } */
-
-let usuarios = [ 
+/* 
+let usuarios = [
     {
         nombre: 'pepe',
         edad: 60,
@@ -133,13 +135,13 @@ let usuarios = [
     },
 
 ]
-
+ */
 //Quiero eliminar al usuario con nombre 'pedro' de mi lista de usuarios
-
-for(let index = 0; index < usuarios.length; index = index + 1){
+/* 
+for (let index = 0; index < usuarios.length; index = index + 1) {
     let usuario = usuarios[index]
 
-    if(usuario.nombre === 'pedro'){
+    if (usuario.nombre === 'pedro') {
         let posicion_pedro = usuarios.indexOf(usuario)
         usuarios.splice(posicion_pedro, 1)
     }
@@ -175,7 +177,84 @@ let productos = [
         id: 5
     }
 ]
-
+ */
 /* 
 Crear una funcion que dado el id de un producto, pueda eliminar ese producto de la lista de productos
+En caso de eliminar devolver un true
+En caso de no eliminar devolver un null
 */
+
+
+
+//declaracion
+/* function eliminarProductoPorId(id) {
+    for (let i = 0; i <= productos.length; i++) {
+        let producto = productos[i]
+        if (id === producto.id) {
+            let posicion_producto = productos.indexOf(producto)
+            productos.splice(posicion_producto, 1)
+            return true
+        }
+    }
+    return null
+} */
+
+//Invocacion
+/* eliminarProductoPorId(2) */
+
+
+/* let url = [
+    'http://',
+    'musimundo.com',
+    '/page/1'
+]
+
+let is_http_url = url.includes('http://')
+
+console.log(is_http_url) */
+
+
+let mensaje = 'recorcholis, hoy lunes no podre jugar, mañana tengo examen'
+
+let palabras_prohibidas = [
+    'lunes',
+    'trabajar',
+    'recorcholis'
+]
+
+let tiene_palabra_prohibida = false
+
+for(
+    let i = 0; 
+    i < palabras_prohibidas.length; 
+    i = i + 1
+){
+    let palabra_prohibida = palabras_prohibidas[i]
+    if(mensaje.includes(palabra_prohibida)){
+        tiene_palabra_prohibida = true
+    }
+}
+
+if(tiene_palabra_prohibida){
+    console.log("No puedes escribir ese mensaje")
+}
+else{
+    console.log('Mensaje subido exitosamente')
+}
+
+/* 
+Hacer una funcion que se llame verificarMensaje(mensaje) y retorne un objeto con 2 propiedades
+{
+    resultado: true | false Dependiendo de si el mensaje contiene o no terminos prohebidos
+    palabras_encontradas: [] Que contendra la lista de plabras prohibidas que esten en el mensaje 
+}
+
+Hacer una funcion que se llame agregarPalabraProhibida(nueva_palabra) y agregue dicha palabra a la lista de palabras prohibidas. 
+Si la palabra ya esta agregada retornar un false
+Sino retornar un true
+
+Hacer una funcion que se llame eliminarPalabraProhibida(palabra_a_eliminar) y elimine dicha palabra
+Si la palabra NO esta agregada retornar un false
+Sino retornar un true
+
+ */
