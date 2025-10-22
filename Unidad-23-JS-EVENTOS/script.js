@@ -238,6 +238,12 @@ const posts = [
     }
 ]
 
+function deletePost(post_id){
+    const post = findPostById(post_id)
+    const post_index = posts.indexOf(post)
+    posts.splice(post_index, 1)
+}
+
 const post_containerHTML = document.getElementById('post-container')
 
 //Los data-attributes
@@ -327,3 +333,18 @@ const cart = [
         quantity: 6 // Cuanto se compro de este elemento
     },
 ]
+
+function findById(product_id){
+    for(const product of cart){
+        if(product.id === product_id){
+            return product
+        }
+    }
+    return null
+}
+
+function incrementProductQuantity(product_id){
+    const product = findById(product_id)
+    product.quantity = product.quantity + 1
+}
+
