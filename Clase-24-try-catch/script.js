@@ -37,7 +37,7 @@ btnCloseModal.addEventListener(
 */
 
 
-try{
+/* try{
     let a = 15
 
     let suma = a + b
@@ -53,3 +53,48 @@ catch (error){
 
 
 console.log('Operacion critica')
+ */
+
+
+/**
+ * porcentaje es un numero del 1 al 100 que determina la tasa de exito
+ * 
+ * */
+function determinarExito (porcentaje) {
+    const factor_porcentaje = porcentaje / 100
+    const numero_random = Math.random() //Es un numero del 1 al 0
+    return factor_porcentaje > numero_random
+}
+
+const user_data = {
+    nombre: 'pepe',
+    id: 1,
+    dinero: 500
+}
+
+function loadUserData (){
+    if(determinarExito(50)){
+        return user_data
+    }
+    else{
+        return null
+    }
+}
+
+try{
+    const user = loadUserData()
+    if(!user){  
+        //Lanza un error al catch mas cercano
+        //Corta la ejecucion del codigo
+        throw new Error('No se pudo cargar los datos del usuario, intente mas tarde') //{message: }
+    }
+
+    console.log('Usuario cargado con exito')
+}
+catch(error){
+    console.log(error)
+    renderModal(
+        'Hubo un error al cargar el usuario',
+        error.message
+    )
+}
