@@ -1,9 +1,9 @@
 const cart = [
-    {
+    /* {
         id: 1,
         title: "mouse gamer",
         price: 4000,
-        quantity: 2 
+        quantity: 2
     },
     {
         id: 2,
@@ -15,8 +15,8 @@ const cart = [
         id: 3,
         title: "Monitor 24\"",
         price: 6000,
-        quantity: 6 
-    },
+        quantity: 6
+    }, */
 ]
 
 const cart_conteiner = document.getElementById('cart-conteiner')
@@ -52,21 +52,21 @@ function renderizarCarrito() {
 
     for (const btnI of btn_incrementar) {
         btnI.addEventListener(
-            "click", 
+            "click",
             incrementProductQuantity
         )
     }
     const btn_decrementar = cart_conteiner.getElementsByClassName('btn-decrementar')
     for (const btnD of btn_decrementar) {
         btnD.addEventListener(
-            "click", 
+            "click",
             decrementProductQuantity
         )
     }
     const btn_eliminar = cart_conteiner.getElementsByClassName('btn-eliminar')
     for (const btnE of btn_eliminar) {
         btnE.addEventListener(
-            "click", 
+            "click",
             handleDeleteProduct
         )
     }
@@ -83,18 +83,28 @@ function incrementProductQuantity(event) {
 }
 
 function decrementProductQuantity(event) {
-    const product_id = Number(event.target.dataset.product_id)
-    const product = findProductById(product_id)
-    if (product.quantity <= 1) {
-        deleteProductById(product_id)
-        
-    } else {
-        product.quantity = product.quantity - 1
+    try {
+        if (determinarExito(90)) {
+            const product_id = Number(event.target.dataset.product_id)
+            const product = findProductById(product_id)
+            if (product.quantity <= 1) {
+                deleteProductById(product_id)
+
+            } else {
+                product.quantity = product.quantity - 1
+            }
+            renderizarCarrito()
+        }
+        else {
+            throw new Error('No se pudo decrementar el producto') //{message:}
+        }
     }
-    renderizarCarrito()
+    catch (error) {
+        console.log(error.message)
+    }
 }
 
-function handleDeleteProduct (event) {
+function handleDeleteProduct(event) {
     const product_id = Number(event.target.dataset.product_id)
     deleteProductById(product_id)
 }
@@ -109,7 +119,7 @@ function deleteProductById(product_id) {
 }
 
 function eliminarCarrito() {
-    if(cart.length===0){
+    if (cart.length === 0) {
         return alert("Carrito vacio")
     }
     cart.length = 0
@@ -118,7 +128,7 @@ function eliminarCarrito() {
 
 function calcularTotal() {
     let total = 0
-    for (const product of cart){
+    for (const product of cart) {
         const productoSubtotal = product.price * product.quantity
         total = total + productoSubtotal
     }
@@ -129,9 +139,10 @@ function calcularTotal() {
 
 button_eliminar_carrito.addEventListener("click", eliminarCarrito)
 
-renderizarCarrito()
+//renderizarCarrito()
 
 /* 
+
 - incrementar tasa-fallo: 10%
 - decrementar tasa-fallo: 30%
 - eliminar    tasa-fallo: 80%
@@ -147,4 +158,57 @@ Cuando decrementar falle deberas mostrar el modal de fallo:
 Cuando eliminar falle deberas mostrar el modal de fallo: 
     Titulo: Fallo del servidor
     texto:  no has podido eliminar el producto del carrito
+
+*/
+
+
+function loadCart() {
+    const serverCartLoaded = [
+        {
+            id: 1,
+            title: "mouse gamer",
+            price: 4000,
+            quantity: 2
+        },
+        {
+            id: 2,
+            title: "PC Dell",
+            price: 40000,
+            quantity: 6
+        },
+        {
+            id: 3,
+            title: "Monitor 24\"",
+            price: 6000,
+            quantity: 6
+        },
+    ]
+
+
+    //Se ejecutara el for of en 2 segundos
+    setTimeout(
+        function (){ //Accion a ejecutar
+            for (const item of serverCartLoaded) {
+                cart.push(item)
+            }
+            renderizarCarrito()
+        },
+        2000 //Tiempo en MS
+    )
+
+    
+}
+
+loadCart()
+
+/* 
+Emulando una consulta al servidor
+- El carrito tardara 2 segundos en cargarse, al finalizar la carga, renderizar el carrito
+- Si se esta cargando debera mostrar un cargando en la pantalla
+- OPCIONAL: Habra una tasa de exito del 70%, si falla la carga de carrito, lanzar en la PANTALLA donde mostramos el carrito, 'no se pudo cargar el carrito' con un boton de reintentar 
+- Opcional: El boton de reintentar debera volver a intentar obtener la lista de el server (con los 2 segundos y la pantalla de carga) (OJO QUE PUEDE VOLVER A FALLAR.)
+
+RECOMENDACION PERSONAL:
+- Tengan un estado global de cargando, donde si cargando es verdadero, se muestre la pantalla de carga
+- Alternativa, tengan una funcion llamada renderLoader que renderize el cargando y unmountLoader elimine el loader
 */
