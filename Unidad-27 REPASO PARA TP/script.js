@@ -3,7 +3,6 @@ let loading_users_state = false
 let error_users_state = null
 
 
-
 const users_container = document.getElementById('users-container')
 const spinner = document.getElementById('spinner')
 const error_HTML = document.getElementById('error')
@@ -48,9 +47,26 @@ function setUsersState (new_value){
     renderUsers()
 }
 
+function setLoading(new_loading_state){
+    cargandoProductos = new_loading_state
+    renderLoadingPost()
+}
+
+
+function setError(new_error_state){
+    error_users_state = new_error_state
+    renderError()
+}
 
 
 
 renderUsers()
 renderLoadingSpinner()
 renderError()
+
+
+/* Mostrar por consola el resultado del servidor */
+function loadUsers(){
+    //Enviar un fetch a el servidor
+    fetch('https://dummyjson.com/users')
+}
