@@ -130,3 +130,5 @@ function calcularTotal() {
 button_eliminar_carrito.addEventListener("click", eliminarCarrito)
 
 renderizarCarrito()
+
+
