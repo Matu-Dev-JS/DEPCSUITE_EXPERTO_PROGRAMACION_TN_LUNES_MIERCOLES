@@ -8,7 +8,7 @@ const spinner = document.getElementById('spinner')
 const error_HTML = document.getElementById('error')
 
 function renderUsers() {
-    if(!users){
+    if(!users_state){
         return null
     }
 
@@ -16,7 +16,7 @@ function renderUsers() {
     for(let user of users_state ){
         html = html + `
             <div class="user">
-                <h2>${user.name}</h2>
+                <h2>${user.firstName}</h2>
                 <p>${user.email}</p>
             </div>
         `
@@ -49,7 +49,7 @@ function setUsersState (new_value){
 
 function setLoading(new_loading_state){
     cargandoProductos = new_loading_state
-    renderLoadingPost()
+    renderLoadingSpinner()
 }
 
 
@@ -66,7 +66,30 @@ renderError()
 
 
 /* Mostrar por consola el resultado del servidor */
-function loadUsers(){
+/* function loadUsers(){
     //Enviar un fetch a el servidor
     fetch('https://dummyjson.com/users')
+} */
+
+async function loadUsers(){
+    setLoading(true)
+    let response_http = await fetch(
+        'https://dummyjson.com/users', 
+        {
+            method: 'GET'
+        }
+    )
+    
+    let response = await response_http.json()
+    setLoading(false)
+
+    console.log(response)
+    setUsersState(response.users)
 }
+
+loadUsers()
+
+
+/* 
+Crear un boton de eliminar sobre cada usuario, al darle eliminar se debera usar la funcion deleteUserByUserId(user_id) y eliminara el elemento del estado de usuarios
+*/
