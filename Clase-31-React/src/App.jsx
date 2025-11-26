@@ -12,13 +12,13 @@ function App (){
       />
       <ParrafoExtendible 
         parrafo={
-          'Hola que tal?'
+          'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem ullam at quaerat quia ipsam, laboriosam vel cumque tenetur dignissimos accusamus quae quam ipsum exercitationem molestiae, illo qui enim inventore. Vero?'
         }
         limite_palabras={5}
       />
       <ParrafoExtendible 
         parrafo={
-          'Todo bien?'
+          'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem ullam at quaerat quia ipsam, laboriosam vel cumque tenetur dignissimos accusamus quae quam ipsum exercitationem molestiae, illo qui enim inventore. Vero?'
         }
         limite_palabras={5}
       />
