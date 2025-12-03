@@ -27,6 +27,10 @@ export default function ContactSidebar() {
         'Cargando', loadingContacts,
         'Contact list', contacts
     )
+    /* 
+    Comunicar la lista de contactos al ConctactList component
+    Renderizar la lista de contactos (No hacen falta estilos en esta etapa)
+    */
 
     return (
         <div>
