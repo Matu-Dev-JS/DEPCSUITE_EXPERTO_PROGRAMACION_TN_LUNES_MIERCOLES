@@ -30,11 +30,13 @@ export default function ContactSidebar() {
     /* 
     Comunicar la lista de contactos al ConctactList component
     Renderizar la lista de contactos (No hacen falta estilos en esta etapa)
+        Tener en cuenta el cargando
+        Tener en cuenta si la lista esta vacias
     */
 
     return (
         <div>
-            <ContactList/>
+            <ContactList contacts={contacts} loadingContacts={loadingContacts}/>
         </div>
     )
 }

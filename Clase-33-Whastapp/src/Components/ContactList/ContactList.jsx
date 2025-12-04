@@ -1,7 +1,30 @@
 import React from 'react'
+import ContactItem from '../ContactItem/ContactItem'
 
-export default function ContactList() {
-  return (
-    <div>ContactList</div>
-  )
+export default function ContactList({contacts, loadingContacts}) {
+    /* Responsabilidad de renderizar la lista */
+    if(loadingContacts){
+        return <div>
+            Cargando contactos
+        </div>
+    }
+    
+    if( !contacts || contacts.length === 0 ){
+        return <div>No tienes contactos</div>
+    }
+    return (
+        <div>
+            {
+                contacts.map(
+                    (contact) => {
+                    return (
+                        <ContactItem 
+                            contact={contact}
+                            key={contact.contact_id}
+                        />
+                    )
+                })
+            }
+        </div>
+    )
 }
