@@ -6,7 +6,7 @@ function getContactsList (){
 
 function getContactById (contact_id){
     for(const contact of contacts_data){
-        if(Number(contact.id) === Number(contact_id)){
+        if(Number(contact.contact_id) === Number(contact_id)){
             return contact
         }
     }
