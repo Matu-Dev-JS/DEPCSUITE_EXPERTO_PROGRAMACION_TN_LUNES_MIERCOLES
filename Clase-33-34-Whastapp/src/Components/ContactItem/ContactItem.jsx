@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { getDateFormated } from '../../utils/formatDate'
 
 export default function ContactItem({ contact }) {
     const {last_message_created_at} = contact
@@ -11,6 +12,7 @@ export default function ContactItem({ contact }) {
             <img src={contact.contact_avatar} alt={contact.contact_name} width={50} />
             <h3>{contact.contact_name}</h3>
             <p>{contact.last_message_content}</p>
+            <p>{getDateFormated(last_message_created_at)}</p>
         </Link>
     )
 }
