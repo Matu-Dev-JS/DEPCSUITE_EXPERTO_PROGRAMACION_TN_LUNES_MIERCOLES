@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ContactList from '../ContactList/ContactList'
 import { getContactsList } from '../../services/contactService'
 
-export default function ContactSidebar() {
+export default function ContactSidebar({isDarkMode}) {
     const [contacts, setContacts] = useState(null)
     const [loadingContacts, setLoadingContacts] = useState(true)
 
@@ -36,7 +36,11 @@ export default function ContactSidebar() {
 
     return (
         <div>
-            <ContactList contacts={contacts} loadingContacts={loadingContacts}/>
+            <ContactList 
+                contacts={contacts} 
+                loadingContacts={loadingContacts}
+                isDarkMode={isDarkMode}
+            />
         </div>
     )
 }

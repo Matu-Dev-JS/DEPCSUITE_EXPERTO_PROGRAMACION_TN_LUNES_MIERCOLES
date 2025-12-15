@@ -1,7 +1,7 @@
 import React from 'react'
 import ContactItem from '../ContactItem/ContactItem'
 
-export default function ContactList({contacts, loadingContacts}) {
+export default function ContactList({contacts, loadingContacts, isDarkMode}) {
     /* Responsabilidad de renderizar la lista */
     if(loadingContacts){
         return <div>
@@ -21,6 +21,7 @@ export default function ContactList({contacts, loadingContacts}) {
                         <ContactItem 
                             contact={contact}
                             key={contact.contact_id}
+                            isDarkMode={isDarkMode}
                         />
                     )
                 })
