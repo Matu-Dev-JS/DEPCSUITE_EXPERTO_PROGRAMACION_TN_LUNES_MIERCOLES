@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router'
 import { getDateFormated } from '../../utils/formatDate'
 import './ContactItem.css'
+import { ThemeContext } from '../../Context/ThemeContext'
 
-export default function ContactItem({ contact, isDarkMode }) {
-    console.log(isDarkMode)
+export default function ContactItem({ contact }) {
+
+    const {isDarkMode} = useContext(ThemeContext)
+    
     const {last_message_created_at} = contact
     console.log(last_message_created_at)
     const date = new Date('2021-01-01T00:00:00.000Z')
