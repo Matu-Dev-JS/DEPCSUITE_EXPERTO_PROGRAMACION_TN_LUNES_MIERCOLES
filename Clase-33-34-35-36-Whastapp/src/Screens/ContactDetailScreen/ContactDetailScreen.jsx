@@ -1,39 +1,44 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { getContactById } from '../../services/contactService'
 import { getDateFormated } from '../../utils/formatDate'
 import Messages from '../../Components/Messages/Messages'
+import { ContactDetailContext } from '../../Context/ContactDetailContext'
+import { ContactContext } from '../../Context/ContactContext'
 
 export default function ContactDetailScreen() {
-    const objeto_parametros_url = useParams()
-    const contact_id = Number(objeto_parametros_url.contact_id)
-    /* 
-    Como podriamos obtener el contacto a partir del contact_id? 
-    */
-    const contact_seleccionado = getContactById(contact_id)
-
-    if(!contact_seleccionado){
+    const { contactSelected } = useContext(ContactDetailContext)
+    
+    
+    if(!contactSelected){
         return (
             <div>
                 <h2>Contacto no encontrado</h2>
             </div>
         )
     }
-
-    console.log(contact_seleccionado.messages)
-
-
-    /* 
-    Crear mensajes en cada contacto (en contactData.js)
-    Renderizar la lista de mensajes en un componente llamado MessagesList (No hace falta estilos en esta etapa)
-    (Recomendacion: Hacer el MessageItem para renderizar un mensaje)
-    */
+    const { updateContactById } = useContext(ContactContext)
+    //A los 3 seg de ejecutarse el componente quiero que se modifique el nombre del contacto a ratatuille
+    useEffect(
+        () => {
+            setTimeout(
+                () => {
+                    updateContactById(
+                        {...contactSelected, contact_name: 'ratatoulle'},
+                        contactSelected.contact_id
+                    )
+                },
+                3000
+            )
+        },
+        []
+    )
 
   return (
     <div>
         <h1>Detalle contacto</h1>
-        <h2>Contacto seleccionado: {contact_seleccionado.contact_name}</h2>
-        <Messages messages={contact_seleccionado.messages}/>
+        <h2>Contacto seleccionado: {contactSelected.contact_name}</h2>
+        <Messages />
     </div>
   )
 }

@@ -5,6 +5,7 @@ import ContactScreen from "./Screens/ContactScreen/ContactScreen"
 import ContactDetailScreen from "./Screens/ContactDetailScreen/ContactDetailScreen"
 import { useState } from "react"
 import ContactContextProvider from "./Context/ContactContext"
+import ContactDetailContextProvider from "./Context/ContactDetailContext"
 
 function App() {
 
@@ -25,12 +26,17 @@ function App() {
 							<HomeScreen />
 						}
 					/>
-					<Route
-						path="/contact/:contact_id"
-						element={
-							<ContactDetailScreen />
-						}
-					/>
+					<Route 
+						path="/contact/:contact_id" 
+						element={<ContactDetailContextProvider/>}
+					>
+						<Route
+							path="/contact/:contact_id"
+							element={
+								<ContactDetailScreen />
+							}
+						/>
+					</Route>
 				</Route>
 				<Route
 					path="/contact"
