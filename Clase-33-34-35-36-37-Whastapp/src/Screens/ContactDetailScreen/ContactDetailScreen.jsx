@@ -5,6 +5,7 @@ import { getDateFormated } from '../../utils/formatDate'
 import Messages from '../../Components/Messages/Messages'
 import { ContactDetailContext } from '../../Context/ContactDetailContext'
 import { ContactContext } from '../../Context/ContactContext'
+import NewMessageForm from '../../Components/NewMessageForm/NewMessageForm'
 
 export default function ContactDetailScreen() {
     const { contactSelected } = useContext(ContactDetailContext)
@@ -18,27 +19,23 @@ export default function ContactDetailScreen() {
         )
     }
     const { updateContactById } = useContext(ContactContext)
-    //A los 3 seg de ejecutarse el componente quiero que se modifique el nombre del contacto a ratatuille
-    useEffect(
-        () => {
-            setTimeout(
-                () => {
-                    updateContactById(
-                        {...contactSelected, contact_name: 'ratatoulle'},
-                        contactSelected.contact_id
-                    )
-                },
-                3000
-            )
-        },
-        []
-    )
 
   return (
     <div>
         <h1>Detalle contacto</h1>
         <h2>Contacto seleccionado: {contactSelected.contact_name}</h2>
+        <button
+            onClick={
+                () => {
+                    updateContactById(
+                        {...contactSelected, contact_name: 'ratatoulle'},
+                        contactSelected.contact_id
+                    )
+                }
+            }
+        >Cambiar</button>
         <Messages />
+        <NewMessageForm/>
     </div>
   )
 }

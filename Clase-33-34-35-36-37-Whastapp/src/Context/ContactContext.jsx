@@ -34,39 +34,29 @@ export default function ContactContextProvider (){
     }
 
     function updateContactById (
-        updated_contact, //Un objeto simil a un contacto con algunas modificaciones (ejemplo, el nombre)
-        contact_id_to_update //UN numero que representa el id del contacto que queremos actualizar
-    ){
-        //Crean un nuevo array a partir del clone donde el contacto que tenga un id igual al pasado por parametro se reemplaze por updated_contact
-        //Setear el resultado como un nuevo estado de contactos
-        //TIP: Recuerden que para crear un array a partir de otro existe el metodo de array (MAP)
-        const contacts_updated = contacts.map(
-            (contact) => {
-                if(Number(contact.contact_id) === contact_id_to_update){
-                    return updated_contact
-                }
-                return contact
+        update_contact_object,
+        contact_id_to_update
+    )
+    {
+        setContacts(
+            (currentContactsList) => {
+                const updatedContactsList = currentContactsList.map(
+                    (contact) => {
+                        if (Number(contact.contact_id) === Number(contact_id_to_update)) {
+                            return { ...contact, ...update_contact_object }
+                        } else {
+                            return contact
+                        }
+                    }
+                )
+                return updatedContactsList
             }
         )
-
-        /*    
-        Alternativa sin map
-        const contacts_updated = [...contacts]
-        const indexToReplace = contacts_updated.findIndex((contact) => contact.contact_id === contact_id_to_update)
-        contacts_updated.slice(indexToReplace, 1, updated_contact) 
-        */
-
-        setContacts(contacts_updated)
     }
 
     useEffect(
         loadContacts,
         []
-    )
-
-    console.log(
-        'Cargando', loadingContacts,
-        'Contact list', contacts
     )
 
     const providerValues = {

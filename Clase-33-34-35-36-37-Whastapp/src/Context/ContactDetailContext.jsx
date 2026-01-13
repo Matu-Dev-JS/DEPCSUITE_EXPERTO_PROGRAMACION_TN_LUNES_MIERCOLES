@@ -20,7 +20,7 @@ export const ContactDetailContext = createContext(
 )
 
 function ContactDetailContextProvider (){
-    const {getContactById} = useContext(ContactContext)
+    const {getContactById, updateContactById} = useContext(ContactContext)
 
 
 
@@ -29,9 +29,27 @@ function ContactDetailContextProvider (){
 
     const contactSelected = getContactById(contact_id)
 
-    const providerValues = {
-        contactSelected: contactSelected
+    
+    function addNewMessage (new_message_text){
+        const new_message = {
+            message_id: contactSelected.messages.length + 1,
+            message_content: new_message_text,
+            message_status: 'UNSEEN',
+            message_created_at: new Date(),
+            send_by_me: true
+        }
+        console.log(new_message)
+        updateContactById(
+            {messages: [...contactSelected.messages, new_message]},
+            contact_id
+        )
     }
+
+    const providerValues = {
+        contactSelected: contactSelected,
+        addNewMessage: addNewMessage
+    }
+
 
     return (
 
