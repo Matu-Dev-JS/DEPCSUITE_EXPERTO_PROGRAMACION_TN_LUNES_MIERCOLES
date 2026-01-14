@@ -14,6 +14,7 @@ function App() {
 	Si isDarkMode es verdadero el contactItem.jsx debe tener un color de letra rojo 
 	(Acordate que podes transferir informacion entre componentes por medio de las props)
 	*/
+	
 
 	
 	return (
