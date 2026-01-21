@@ -1,0 +1,14 @@
+{
+  "name": "clase-1",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "node --watch src/main.js"
+  },
+  "keywords": [],
+  "author": "matu.dev",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "Es un proyecto de prueba para probar node.js"
+}
