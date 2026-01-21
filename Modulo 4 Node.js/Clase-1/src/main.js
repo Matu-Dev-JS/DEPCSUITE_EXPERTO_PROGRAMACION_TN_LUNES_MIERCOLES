@@ -79,6 +79,8 @@ const { sumar } = require("./math");
 
 
 /* 
+NO SE VALE USAR SYNC debe ser asincronico con promesas 
+
 Crear un archivo llamado numero-1.txt con un numero random (MANUALMENTE, sin codigo)
 Crear un archivo llamado numero-2.txt con un numero random (MANUALMENTE, sin codigo)
 
@@ -86,3 +88,20 @@ Leer el archivo numero-1.txt con node.js y el archivo numero-2.txt
 
 Generar el archivo resultado.txt con node.js con el valor resultante entre la suma de ambos numeros.
 */
+
+const filesystem = require('fs')
+
+async function leerNumero(filePath){
+    
+}
+
+async function resolverSuma (){
+   /*  let numero_1 = await filesystem.promises.readFile()
+
+    await filesystem.promises.writeFile() */
+    let numero_1 = await leerNumero('numero-1.txt')
+    let numero_2 = await leerNumero('numero-2.txt')
+    let resultado = Number(numero_1) + Number(numero_2)
+    await filesystem.promises.writeFile('resultado.txt')
+}
+
