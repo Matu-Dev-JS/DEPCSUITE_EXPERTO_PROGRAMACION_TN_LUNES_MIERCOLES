@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "score": 8.99,
+        "details": "Falta mas historial",
+        "version": "1.0.0"
+    },
+    {
+        "id": 2,
+        "score": 9.99,
+        "details": {
+            "text": "Optimo",
+            "code": 700
+        },
+        "version": "1.1.0"
+    },
+    {
+        "id": 3,
+        "result": 10,
+        "details": {
+            "text": "Optimo",
+            "code": 700
+        },
+        "version": "1.2.0"
+    }
+]

@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title": "Tv samsung",
+        "price": 1000
+    },
+    {
+        "id": 2,
+        "title": "Tv samsung",
+        "price": 2000
+    },
+    {
+        "id": 3,
+        "title": "Tv samsung",
+        "price": 3000
+    }
+]
