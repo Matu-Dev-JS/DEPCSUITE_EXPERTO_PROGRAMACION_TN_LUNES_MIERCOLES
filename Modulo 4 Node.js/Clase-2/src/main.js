@@ -28,12 +28,23 @@ Quiero mostrar por consola un mensaje incial tipo:
 La aplicacion se esta ejecutando correctamente en la version {version}
 */
 const filesystem = require('fs')
-async function readPackageJSON() {
+const { mostrarReportes, obtenerReportesNormalizados } = require('./services/reportes/reportes.service.js')
+
+
+mostrarReportes()
+obtenerReportesNormalizados()
+
+
+
+
+/* 
+/* async function readPackageJSON() {
     const json = await filesystem.promises.readFile('package.json', 'utf-8')
 
     const packageJSON = JSON.parse(json)
     return packageJSON
 }
+
 
 async function initMessage() {
     const packageJSON = await readPackageJSON()
@@ -42,92 +53,5 @@ async function initMessage() {
 
 initMessage()
 
-/* 
-Leer el archivo reportes.json y decir por cada reporte por consola
-'El reporte con id {id} tiene una puntuacion {score o resultado}. Observaciones: {detalles}. Codigo (si lo hay): {code}' 
+ */
 
-OJO: porque no todos los reportes tienen la misma forma
-*/
-async function readReportes() {
-    const json = await filesystem.promises.readFile('reportes.json', 'utf-8')
-    const reportes = JSON.parse(json)
-    return reportes
-}
-
-function printReport1_0_0(report) {
-    console.log(`El reporte con id ${report.id} tiene una puntuacion ${report.score}. Observaciones: ${report.details}.`)
-}
-function printReport1_1_0(report) {
-    console.log(`El reporte con id ${report.id} tiene una puntuacion ${report.score}. Observaciones: ${report.details.text}. Codigo (si lo hay): ${report.details.code}`)
-}
-function printReport1_2_0(report) {
-    console.log(`El reporte con id ${report.id} tiene una puntuacion ${report.result}. Observaciones: ${report.details.text}. Codigo (si lo hay): ${report.details.code}`)
-}
-
-
-
-async function leerReportes (){
-    const reportes = await readReportes()
-    for(const reporte of reportes){
-        FUNCIONES_REPORTE[reporte.version].readReport(reporte)
-    }
-}
-
-leerReportes()
-
-function normalizeReport1_0_0 (report){
-    return {
-        result: report.score,
-        id: report.id,
-        detail_text: report.details,
-        version: report.version
-    }
-}
-function normalizeReport1_1_0 (report){
-    return {
-        result: report.score,
-        id: report.id,
-        detail_text: report.details.text,
-        detail_code: report.details.code,
-        version: report.version
-    }
-}
-function normalizeReport1_2_0 (report){
-    return {
-        result: report.result,
-        id: report.id,
-        detail_text: report.details.text,
-        detail_code: report.details.code,
-        version: report.version
-    }
-}
-
-const FUNCIONES_REPORTE = {
-    "1.0.0": {
-        readReport: printReport1_0_0,
-        normalize: normalizeReport1_0_0
-    },
-    "1.1.0": {
-        readReport: printReport1_1_0,
-        normalize: normalizeReport1_1_0
-    },
-    "1.2.0": {
-        readReport: printReport1_2_0,
-        normalize: normalizeReport1_2_0
-    }
-}
-
-async function obtenerReportesNormalizados (){
-    const reportes_crudos = await readReportes()
-
-    const reportes_normalizados = reportes_crudos.map(
-        (reporte_crudo) => {
-            return FUNCIONES_REPORTE[reporte_crudo.version].normalize(reporte_crudo)
-        }
-    )
-    console.log({reportes_normalizados})
-    return reportes_normalizados
-}
-
-
-obtenerReportesNormalizados()
