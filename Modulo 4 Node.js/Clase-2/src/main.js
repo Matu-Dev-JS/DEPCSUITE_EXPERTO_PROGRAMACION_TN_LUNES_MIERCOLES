@@ -64,17 +64,7 @@ function printReport1_2_0(report) {
     console.log(`El reporte con id ${report.id} tiene una puntuacion ${report.result}. Observaciones: ${report.details.text}. Codigo (si lo hay): ${report.details.code}`)
 }
 
-const FUNCIONES_REPORTE = {
-    "1.0.0": {
-        readReport: printReport1_0_0
-    },
-    "1.1.0": {
-        readReport: printReport1_1_0
-    },
-    "1.2.0": {
-        readReport: printReport1_2_0
-    }
-}
+
 
 async function leerReportes (){
     const reportes = await readReportes()
@@ -84,3 +74,60 @@ async function leerReportes (){
 }
 
 leerReportes()
+
+function normalizeReport1_0_0 (report){
+    return {
+        result: report.score,
+        id: report.id,
+        detail_text: report.details,
+        version: report.version
+    }
+}
+function normalizeReport1_1_0 (report){
+    return {
+        result: report.score,
+        id: report.id,
+        detail_text: report.details.text,
+        detail_code: report.details.code,
+        version: report.version
+    }
+}
+function normalizeReport1_2_0 (report){
+    return {
+        result: report.result,
+        id: report.id,
+        detail_text: report.details.text,
+        detail_code: report.details.code,
+        version: report.version
+    }
+}
+
+const FUNCIONES_REPORTE = {
+    "1.0.0": {
+        readReport: printReport1_0_0,
+        normalize: normalizeReport1_0_0
+    },
+    "1.1.0": {
+        readReport: printReport1_1_0,
+        normalize: normalizeReport1_1_0
+    },
+    "1.2.0": {
+        readReport: printReport1_2_0,
+        normalize: normalizeReport1_2_0
+    }
+}
+
+async function obtenerReportesNormalizados (){
+    const reportes_crudos = await readReportes()
+
+    const reportes_normalizados = reportes_crudos.map(
+        (reporte_crudo) => {
+            return FUNCIONES_REPORTE[reporte_crudo.version].normalize(reporte_crudo)
+        }
+    )
+    console.log({reportes_normalizados})
+    return reportes_normalizados
+}
+
+
+obtenerReportesNormalizados()
