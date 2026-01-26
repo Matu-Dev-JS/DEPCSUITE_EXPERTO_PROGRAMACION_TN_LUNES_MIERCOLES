@@ -55,3 +55,28 @@ initMessage()
 
  */
 
+
+
+/* 
+Leer el archivo para-reportar.json y por cada elemento para reportar deberas crear un nuevo reporte
+El a crear reporte tendra este formato: 
+    {
+        id: (se lo calculas vos),
+        resultado: puntaje,
+        details: {
+            text: menos de 5: 'Muy riesgoso', menos de 7: 'no recomendable', menos de 8: 'aceptable', menos de 9: 'recomendable', menos de 10: 'optimo',
+            code: 700 (siempre sera 700)
+        },
+        version: '1.2.0' (Opcional: Que el nro de version venga de el package.json)
+    }
+Una vez generada la lista de reportes deberas agregarla a la lista existente de reportes
+*/
+
+/* 
+Ejemplo de codigo:
+const reportes = await readReportes() //Obtenemos lista actual de reportes
+const para_reportar = [ {puntaje: 9.5} ]
+const reporte_generado = generarReporte(para_reportar[0])// Esto generara el reporte
+reportes.push(reporte_generado)
+actualizarReportes(reportes) //Escribir el archivo reportes.json donde debera estar agregado el ultimo reporte (Y los previos)
+*/
