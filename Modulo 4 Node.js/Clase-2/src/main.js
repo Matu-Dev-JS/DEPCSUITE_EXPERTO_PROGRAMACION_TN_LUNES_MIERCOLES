@@ -41,3 +41,11 @@ async function initMessage (){
 }
 
 initMessage()
+
+/* 
+Leer el archivo reportes.json y decir por cada reporte por consola
+'El reporte con id {id} tiene una puntuacion {score o resultado}. Observaciones: {detalles}. Codigo (si lo hay): {code}' 
+
+OJO: porque no todos los reportes tienen la misma forma
+*/
+
