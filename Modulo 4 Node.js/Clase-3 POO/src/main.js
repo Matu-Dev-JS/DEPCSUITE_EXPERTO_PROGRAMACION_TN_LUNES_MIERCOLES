@@ -139,9 +139,24 @@ ItemInventario
 Inventario
     - id
     - items (tendra un array de items, incialmente vacio)
+    - cantidad_maxima_espacios (el limite de items disntintos que puede tener nuestro inventario) 
     - agregarItem(item): 
         verificar si el item existe actualmente en la lista de items, si ya existe se modificara el ItemInventario para que su cantidad sea uno mas
-        Sino simplemente lo agregara con cantidad 1 (Cuando lo agrega, lo agregara como ItemInventario)
+        Sino verificar que no se haya superado la cantidad maxima de espacios y ahi  
+        lo agregara con cantidad 1 (Cuando lo agrega, lo agregara como ItemInventario)
+        
+    
+    - eliminarItemPorId(id) 
+        Elimina el item si lo encuentra
+
+    - soltarUnItemPorId(id)
+        Buscara el item a soltar, si existe verificara la cantidad
+            Si es mayor a 1:
+                decrementara la cantidad en 1
+            Sino
+                Eliminara el item del inventario (this.eliminarItemPorId(id))
+
+
 
 EJEMPLO de Inventario
 {
@@ -154,6 +169,6 @@ EJEMPLO de Inventario
             nivel: 1,
             cantidad: 1
         }
-    ]        
+    ]
 }
 */
