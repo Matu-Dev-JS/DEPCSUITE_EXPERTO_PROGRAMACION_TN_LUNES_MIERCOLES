@@ -92,6 +92,7 @@ const item_3= new Item('Pocion', 1, 'Pocion de vida');
  */
 
 class Persona {
+
     constructor (nombre, edad){
         this.nombre = nombre;
         this.edad = edad;
@@ -103,6 +104,7 @@ class Persona {
 }
 
 const persona_1 = new Persona('pepe', 30)
+console.log(persona_1)
 persona_1.presentarse()
 
 
@@ -119,10 +121,39 @@ Personaje
 
 
 Item
+    - id
     - titulo
     - nivel
     - descripcion
     - describir() Relatara por consola como se ve el objeto
 
-    y hagan 3 ejemplos de cada uno (Y muestren por consola para verificar)
+
+ItemInventario
+    - id
+    - titulo
+    - nivel
+    - descripcion
+    - cantidad
+    - describir() Relatara por consola como se ve el objeto
+
+Inventario
+    - id
+    - items (tendra un array de items, incialmente vacio)
+    - agregarItem(item): 
+        verificar si el item existe actualmente en la lista de items, si ya existe se modificara el ItemInventario para que su cantidad sea uno mas
+        Sino simplemente lo agregara con cantidad 1 (Cuando lo agrega, lo agregara como ItemInventario)
+
+EJEMPLO de Inventario
+{
+    id: 1,
+    items: [
+        {
+            id: 1,
+            titulo: 'espada larga',
+            descripcion: 'una espada muy larga',
+            nivel: 1,
+            cantidad: 1
+        }
+    ]        
+}
 */
