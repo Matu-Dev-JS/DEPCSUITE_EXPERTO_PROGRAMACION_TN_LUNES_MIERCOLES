@@ -142,7 +142,7 @@ Inventario
     - cantidad_maxima_espacios (el limite de items disntintos que puede tener nuestro inventario) 
     - agregarItem(item): 
         verificar si el item existe actualmente en la lista de items, si ya existe se modificara el ItemInventario para que su cantidad sea uno mas
-        Sino verificar que no se haya superado la cantidad maxima de espacios y ahi  
+        Sino verificar que no se haya llegado o superado la cantidad maxima de espacios y ahi  
         lo agregara con cantidad 1 (Cuando lo agrega, lo agregara como ItemInventario)
         
     
