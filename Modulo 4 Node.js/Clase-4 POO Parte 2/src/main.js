@@ -1,5 +1,5 @@
 
-class Item {
+/* class Item {
     constructor(name, price) {
         this.name = name;
         this.price = price;
@@ -30,7 +30,7 @@ class Persona {
         console.log(`Hola yo soy ${this.name}`)
     }
 }
-
+ */
 /* 
 extends es una palabra reservada que se usa para marcar que una clase recibira una herencia de otra clase
 Por ejemplo
@@ -44,7 +44,7 @@ El constructor de la nueva clase recibira lo que ustedes coinsideren como necesa
 super es la invocacion de la funcion constructora (constructor) de la clase padre
 */
 
-class Caballero extends Persona {
+/* class Caballero extends Persona {
     constructor(name, age, life_points, arma_preferida, fecha_juramento){
         super(name, age, life_points)
         this.arma_preferida = arma_preferida
@@ -66,7 +66,7 @@ const juancitoCaballero = new Caballero (
     'daga',
     new Date()
 )
-
+ */
 /* 
 AccionHistorial
     - id
@@ -89,7 +89,7 @@ AccionActualizarPerfilHistorial
     - valor_campo_anterior: (por ejemplo 'pepesito' o 'pepesito@gmail.com')
 */
 
-class AccionHistorial {
+/* class AccionHistorial {
     constructor (id, descripcion, fecha){
         this.id = id
         this.descripcion = descripcion
@@ -131,6 +131,14 @@ class Humano {
     saltar(){
         console.log(`Estoy saltando`)
     }
+
+    comer(comida){
+        console.log(`Estoy comiendo ${comida}`)
+    }
+
+    dormir (horas){
+        console.log(`Estoy durmiendo ${horas} horas`)
+    }
 }
 
 class SuperHumano extends Humano {
@@ -143,3 +151,27 @@ class SuperHumano extends Humano {
         console.log(`Estoy saltando super alto`)
     }
 }
+
+const superman = new SuperHumano('Clark Kent', 30, ['volar', 'super fuerza'])
+
+superman.comer('pizza')
+superman.saltar() */
+
+
+/* 
+Item
+    - id
+    - titulo
+    - nivel
+    - descripcion
+    - describir() Relatara por consola como se ve el objeto
+
+
+ItemInventario extends Item
+    - id
+    - titulo
+    - nivel
+    - descripcion
+    - cantidad
+    - describir() Relatara por consola como se ve el objeto
+*/
