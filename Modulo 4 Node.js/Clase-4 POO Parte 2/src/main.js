@@ -167,7 +167,7 @@ Item
     - describir() Relatara por consola como se ve el objeto
 
 ItemsLista 
-    - items (lista de items globales, osea todos los items del "juego")
+    - items (array de items globales, osea todos los items del "juego")
     - crear(titulo, nivel, descripcion) agrega a la lista de items con un nuevo id
     - eliminar(id_item) elimina un item de la lista
     - obtenerPorId(id_item) obtener el item con ese id
