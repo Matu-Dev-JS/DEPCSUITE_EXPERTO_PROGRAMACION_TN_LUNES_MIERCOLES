@@ -186,6 +186,9 @@ Un inventario tendra slots, los slots son los casilleros del inventario
 Un inventario tendra dimensiones por ejemplo 3x2 o 4x4 o la combinacion que se desee
 Un inventario tendra esta forma:
 {
+    filas: 3,
+    columnas: 2,
+    cantidad_maxima_por_casillero: 64,
     items: [
         [
             {id: 1, x: 1, y: 1, cantidad: 0, id_item: null},
@@ -249,3 +252,18 @@ const item = new Item('1', 'espada', '40', 'una espada de madera muy debil')
 const itemInventario = new ItemInventario('2', 'espada', '5', 'una espada de diamante', '1')
 item.describir()
 itemInventario.describir() */
+
+class Inventario {
+    constructor(filas, columns, cantidad_maxima_por_casillero){
+        this.filas = filas
+        this.columns = columns,
+        this.cantidad_maxima_por_casillero = cantidad_maxima_por_casillero
+        this.items = []
+      /*   
+      if(this.filas > 1){
+            for(let y = 1; y <= this.filas; y++){
+                for()
+            }
+        } */
+    }
+}
