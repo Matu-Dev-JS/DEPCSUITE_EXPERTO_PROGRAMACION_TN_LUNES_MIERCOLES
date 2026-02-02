@@ -181,12 +181,51 @@ CasilleroInventario
     - id_item (ojo, este puede ser null, que significa que el casillero esta vacio)
 
 
-Aclaraciones:
-- No existe inventario AUN
-- CasilleroInventario por ende no tiene uso AUN
-- Creen almenos 5 items de prueba mediante el metodo .crear
+Iventario
+Un inventario tendra slots, los slots son los casilleros del inventario
+Un inventario tendra dimensiones por ejemplo 3x2 o 4x4 o la combinacion que se desee
+Un inventario tendra esta forma:
+{
+    items: [
+        [
+            {id: 1, x: 1, y: 1, cantidad: 0, id_item: null},
+            {id: 2, x: 2, y: 1, cantidad: 0, id_item: null},
+            {id: 3, x: 3, y: 1, cantidad: 0, id_item: null}
+        ],
+        [
+            {id: 4, x: 1, y: 2, cantidad: 0, id_item: null},
+            {id: 5, x: 2, y: 2, cantidad: 0, id_item: null},
+            {id: 6, x: 3, y: 2, cantidad: 0, id_item: null}
+        ]
+    ]
+}
 
+new Iventario(filas, columnas, cantidad_maxima_por_casillero)
+    - filas
+    - columnas
+    - cantidad_maxima_por_casillero
+    - items
 
+- agregarItem(id_item, fila, columna, cantidad): 
+    Verificar que el item exista
+    Si existe:
+        Verificar si en esa posicion no hay un item
+            Si no hay:
+                Agregan el item (modificando el casillero)
+            Si hay algo:
+                Verificar si el item_id es el mismo que el que se quiere agregar
+                    Si es el mismo:
+                        Sumar cantidades y verificar que no supere el maximo
+                            Si no supera:
+                                Agregar
+                            Si supera:
+                                decir por consola: "error, casillero ya esta lleno"
+                    Si no es el mismo:
+                        decir por consola: "error, casillero ya ocupado"
+    Si no existe:
+        decir por consola: "error, Item no encontrado"
+
+    
 */
 
 /* class Item {
