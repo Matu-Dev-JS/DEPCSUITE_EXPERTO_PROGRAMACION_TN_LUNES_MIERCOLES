@@ -166,12 +166,47 @@ Item
     - descripcion
     - describir() Relatara por consola como se ve el objeto
 
+ItemsLista 
+    - items (lista de items globales, osea todos los items del "juego")
+    - crear(titulo, nivel, descripcion) agrega a la lista de items con un nuevo id
+    - eliminar(id_item) elimina un item de la lista
+    - obtenerPorId(id_item) obtener el item con ese id
 
-ItemInventario extends Item
+CasilleroInventario
     - id
-    - titulo
-    - nivel
-    - descripcion
-    - cantidad
-    - describir() Relatara por consola como se ve el objeto
+    - cantidad (ojo, este puede ser 0, que significa que el casillero esta vacio)
+    - x
+    - y
+    - number
+    - id_item (ojo, este puede ser null, que significa que el casillero esta vacio)
+
+
+Aclaraciones:
+- No existe inventario AUN
+- CasilleroInventario por ende no tiene uso AUN
+- Creen almenos 5 items de prueba mediante el metodo .crear
+
+
 */
+
+/* class Item {
+    constructor(id, titulo, nivel, descripcion) {
+        this.id = id
+        this.titulo = titulo
+        this.nivel = nivel
+        this.descripcion = descripcion
+    }
+    describir() {
+        console.log(`id: ${this.id}, titulo: ${this.titulo}, nivel: ${this.nivel}, descripcion: ${this.descripcion}`)
+    }
+}
+class ItemInventario extends Item{
+    constructor(id, titulo, nivel, descripcion, cantidad) {
+        super(id, titulo, nivel, descripcion)
+        this.cantidad = cantidad
+    }
+}
+const item = new Item('1', 'espada', '40', 'una espada de madera muy debil')
+const itemInventario = new ItemInventario('2', 'espada', '5', 'una espada de diamante', '1')
+item.describir()
+itemInventario.describir() */
