@@ -88,3 +88,58 @@ AccionActualizarPerfilHistorial
     - valor_campo_actualizado: (por ejemplo 'pepesito' o 'pepesito@gmail.com')
     - valor_campo_anterior: (por ejemplo 'pepesito' o 'pepesito@gmail.com')
 */
+
+class AccionHistorial {
+    constructor (id, descripcion, fecha){
+        this.id = id
+        this.descripcion = descripcion
+        this.fecha = fecha
+    }
+}
+
+class AccionInicioSesionHistorial extends AccionHistorial{
+    constructor(id, fecha, dispositivo_origen, auth_type){
+        super(id, 'Alguien inicio sesion con tu cuenta', fecha)
+        this.dispositivo_origen = dispositivo_origen
+        this.auth_type = auth_type
+    }
+}
+
+class AccionActualizarPerfilHistorial extends AccionHistorial{
+    constructor(id, fecha, nombre_campo_actualizado, valor_campo_actualizado, valor_campo_anterior){
+        super(id, `Un campo del perfil se actualizo`, fecha)
+        this.nombre_campo_actualizado = nombre_campo_actualizado
+        this.valor_campo_actualizado = valor_campo_actualizado
+        this.valor_campo_anterior = valor_campo_anterior
+    }
+}
+
+const accion_generica = new AccionHistorial(1, 'Alguien hizo algo', new Date())
+const accion_inicio_sesion = new AccionInicioSesionHistorial(2, new Date(), 'PC', 'email')
+const accion_actualizar_perfil = new AccionActualizarPerfilHistorial(3, new Date(), 'username', 'pepesito', 'pepe')
+
+console.log(accion_generica)
+console.log(accion_inicio_sesion)
+console.log(accion_actualizar_perfil)
+
+
+class Humano {
+    constructor(nombre, edad){
+        this.nombre = nombre
+        this.edad = edad
+    }
+    saltar(){
+        console.log(`Estoy saltando`)
+    }
+}
+
+class SuperHumano extends Humano {
+    constructor(nombre, edad, superpoderes){
+        super(nombre, edad)
+        this.superpoderes = superpoderes
+    }
+
+    saltar(){
+        console.log(`Estoy saltando super alto`)
+    }
+}
