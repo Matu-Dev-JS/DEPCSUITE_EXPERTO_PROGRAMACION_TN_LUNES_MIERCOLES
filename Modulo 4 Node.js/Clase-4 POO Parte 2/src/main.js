@@ -267,3 +267,36 @@ class Inventario {
         } */
     }
 }
+
+//Recomendacion
+/* 
+Primero creen un array con las filas (osea y)
+Luego prueben crear ese mismo array con las columns (osea x)
+Por ultimo crear un casillero por cada elemento 
+1.
+[
+'fila-1',
+'fila-2',
+'fila-3'
+]
+2. 
+[
+    [
+        'columna-1',
+        'columna-2',
+        'columna-3'
+    ],
+    [
+        'columna-1',
+        'columna-2',
+        'columna-3'
+    ],
+    [
+        'columna-1',
+        'columna-2',
+        'columna-3'
+    ]
+]
+3.
+Definen casilleros en vez de strings
+*/
