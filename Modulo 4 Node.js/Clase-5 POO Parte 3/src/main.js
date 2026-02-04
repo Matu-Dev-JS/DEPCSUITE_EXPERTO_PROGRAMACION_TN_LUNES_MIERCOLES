@@ -480,3 +480,23 @@ const mochila = new Inventario(
 mochila.agregarItem(1, 1, 1, 5)
 mochila.agregarItem(1, 50, 1, 1)
 console.log(mochila.slots)
+
+/* 
+De tarea
+- Agregar un metodo que permita vaciar un casillero
+    emptySlot(x, y)
+
+- Agregar un metodo que permita disminuir la cantidad de un item
+    dropItem(id_item, x, y, cantidad)
+        - validar que el casillero este ocupado con ese item sino no hacer nada y decir por consola que no se encontro el item en el casillero
+
+- Agregar un metodo que permita cambiar un item por otro de casillero
+    changeItem(id_item, x, y, cantidad)
+        - Validar que el casillero este con otro item distinto al que se quiere agregar (Y no vacio). Y si la operacion se puede resolver modificar el casillero y retornar el id_item antiguo y la cantidad antigua
+
+Aclaraciones:
+    - Validar que item exista
+    - Validar que posicion exista
+    - Validar que la cantidad no exceda el maximo
+
+*/
