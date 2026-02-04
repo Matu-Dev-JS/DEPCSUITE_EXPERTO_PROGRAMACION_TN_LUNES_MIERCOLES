@@ -441,7 +441,12 @@ class Inventario {
             return console.log("error, Item no encontrado")
         }
 
-        const casillero_seleccionado = this.slots[fila - 1][columna - 1]
+        /* 
+        Si this.slots[fila - 1] fuera undefined
+        Que pasa al hacer undefined[columna - 1]: Va a lanzar un error de cannot read properties of undefined
+        Si usamos ?. antes de acceder a la propiedad (o posicion) entonces indicamos a JS que frene la busqueda en caso de que el valor sea un falsy
+        */
+        const casillero_seleccionado = this.slots?.[fila - 1]?.[columna - 1]
         if(!casillero_seleccionado){
             return console.log("error, coordenadas inválidas")
         }
@@ -451,7 +456,7 @@ class Inventario {
             && 
             this.exceedsMaximunLimit(casillero_seleccionado.cantidad + cantidad)
         ){
-            console.log("error, casillero ya esta lleno")
+            return console.log("error, casillero ya esta lleno")
         }
 
         casillero_seleccionado.changeItem(id_item, cantidad)
@@ -472,4 +477,6 @@ const mochila = new Inventario(
     }
 )
 
-console.log("hola")
+mochila.agregarItem(1, 1, 1, 5)
+mochila.agregarItem(1, 50, 1, 1)
+console.log(mochila.slots)
