@@ -374,14 +374,26 @@ class CasilleroInventario {
 
     //La responsabilidad de set item es determinar como se cambia el item en un casillero
     changeItem(id_item, cantidad){
-        if(this.id_item === id_item){
-            this.setCantidad( this.cantidad + cantidad )
-        }
-        else{
+        if(this.isEmpty()){
             this.setIdItem(id_item)
             this.setCantidad(cantidad)
         }
+        else if(this.isAlready(id_item)){
+            this.setCantidad( this.cantidad + cantidad )
+        }
+        else{
+            console.log("Error, casillero ya ocupado")
+        }
     }
+
+    isEmpty(){
+        return this.id_item === null
+    }
+
+    isAlready(id_item){
+        return this.id_item === id_item 
+    }
+
 }
 
 
@@ -434,36 +446,19 @@ class Inventario {
             return console.log("error, coordenadas inválidas")
         }
 
-        if(casillero_seleccionado.id_item === null){
-
+        if(
+            casillero_seleccionado.isAlready(id_item) 
+            && 
+            this.exceedsMaximunLimit(casillero_seleccionado.cantidad + cantidad)
+        ){
+            console.log("error, casillero ya esta lleno")
         }
 
+        casillero_seleccionado.changeItem(id_item, cantidad)
+    }
 
-        if (item_existe) {
-      
-            const casillero_seleccionado = this.slots[fila - 1][columna - 1]
-            if (!casillero_seleccionado) {
-                console.log("error, coordenadas inválidas")
-                return
-            }
-
-            if (casillero_seleccionado.id_item === null) {
-                casillero.id_item = id_item
-                casillero.cantidad = cantidad
-            } else {
-                if (casillero.id_item === id_item) {
-                    if (casillero.cantidad + cantidad <= this.cantidad_maxima_por_casillero) {
-                        casillero.cantidad += cantidad
-                    } else {
-                        console.log("error, casillero ya esta lleno")
-                    }
-                } else {
-                    console.log("error, casillero ya ocupado")
-                }
-            }
-        } else {
-            console.log("error, Item no encontrado")
-        }
+    exceedsMaximunLimit(cantidad){
+        return cantidad > this.cantidad_maxima_por_casillero
     }
 }
 
