@@ -352,7 +352,7 @@ Es la clase encargada de manejar un slot
         - agregar
 */
 class CasilleroInventario {
-    constructor({id, cantidad, x, y, number, id_item}) {
+    constructor({ id, cantidad, x, y, number, id_item }) {
         this.id = id
         this.cantidad = cantidad
         this.x = x
@@ -363,35 +363,40 @@ class CasilleroInventario {
 
 
 
-    setCantidad(cantidad){
+    setCantidad(cantidad) {
         this.cantidad = cantidad
     }
 
-    setIdItem(id_item){
+    setIdItem(id_item) {
         this.id_item = id_item
     }
 
 
     //La responsabilidad de set item es determinar como se cambia el item en un casillero
-    changeItem(id_item, cantidad){
-        if(this.isEmpty()){
+    changeItem(id_item, cantidad) {
+        if (this.isEmpty()) {
             this.setIdItem(id_item)
             this.setCantidad(cantidad)
         }
-        else if(this.isAlready(id_item)){
-            this.setCantidad( this.cantidad + cantidad )
+        else if (this.isAlready(id_item)) {
+            this.setCantidad(this.cantidad + cantidad)
         }
-        else{
+        else {
             console.log("Error, casillero ya ocupado")
         }
     }
 
-    isEmpty(){
+    isEmpty() {
         return this.id_item === null
     }
 
-    isAlready(id_item){
-        return this.id_item === id_item 
+    isAlready(id_item) {
+        return this.id_item === id_item
+    }
+
+    vaciarSlot() {
+        this.setCantidad(0)
+        this.setIdItem(null)
     }
 
 }
@@ -399,7 +404,7 @@ class CasilleroInventario {
 
 
 class Inventario {
-    constructor({filas, columnas, cantidad_maxima_por_casillero}) {
+    constructor({ filas, columnas, cantidad_maxima_por_casillero }) {
         this.filas = filas
         this.columnas = columnas
         this.cantidad_maxima_por_casillero = cantidad_maxima_por_casillero
@@ -412,15 +417,15 @@ class Inventario {
             //Crear la fila
             const fila = []
 
-            for(let x = 1; x <= this.columnas; x++){
+            for (let x = 1; x <= this.columnas; x++) {
 
                 //Genero y agrego el casillero a la fila
                 fila[x - 1] = new CasilleroInventario({
-                    id: contador_id, 
-                    cantidad: 0, 
-                    x: x, 
-                    y: y, 
-                    number: contador_id, 
+                    id: contador_id,
+                    cantidad: 0,
+                    x: x,
+                    y: y,
+                    number: contador_id,
                     id_item: null
                 })
 
@@ -431,13 +436,13 @@ class Inventario {
             //Agregamos la fila al inventario
             this.slots[y - 1] = fila
         }
-     
+
 
     }
-    
+
     agregarItem(id_item, fila, columna, cantidad) {
         const item_existe = manager_items_globales.obtenerPorId(id_item)
-        if(!item_existe){
+        if (!item_existe) {
             return console.log("error, Item no encontrado")
         }
 
@@ -447,22 +452,22 @@ class Inventario {
         Si usamos ?. antes de acceder a la propiedad (o posicion) entonces indicamos a JS que frene la busqueda en caso de que el valor sea un falsy
         */
         const casillero_seleccionado = this.slots?.[fila - 1]?.[columna - 1]
-        if(!casillero_seleccionado){
+        if (!casillero_seleccionado) {
             return console.log("error, coordenadas inválidas")
         }
 
-        if(
-            casillero_seleccionado.isAlready(id_item) 
-            && 
+        if (
+            casillero_seleccionado.isAlready(id_item)
+            &&
             this.exceedsMaximunLimit(casillero_seleccionado.cantidad + cantidad)
-        ){
+        ) {
             return console.log("error, casillero ya esta lleno")
         }
 
         casillero_seleccionado.changeItem(id_item, cantidad)
     }
 
-    exceedsMaximunLimit(cantidad){
+    exceedsMaximunLimit(cantidad) {
         return cantidad > this.cantidad_maxima_por_casillero
     }
 }
@@ -472,7 +477,7 @@ class Inventario {
 const mochila = new Inventario(
     {
         filas: 2,
-        columnas: 2, 
+        columnas: 2,
         cantidad_maxima_por_casillero: 10
     }
 )
@@ -486,14 +491,91 @@ De tarea
 - Agregar un metodo que permita vaciar un casillero
     emptySlot(x, y)
 
+    emptySlot(x, y) {
+        //Podrias tener un metodo tipo Inventario.findSlot(x, y)
+        //Incluso otra de mas alto nivel que se llame Inventario.verifyExistenceSlot(x, y)
+        const slotSelected = this.slots?.[x - 1]?.[y - 1]
+        if(!slotSelected){
+            console.log('casillero inexistente')
+            return
+        }
+        else {
+            slotSelected.vaciarSlot()
+        }
+    }
+*/
+
+
+
+/*
 - Agregar un metodo que permita disminuir la cantidad de un item
     dropItem(id_item, x, y, cantidad)
         - validar que el casillero este ocupado con ese item sino no hacer nada y decir por consola que no se encontro el item en el casillero
 
+    dropItem(id_item, x, y, cantidad) {
+        //Podrias tener un metodo tipo Inventario.findSlot(x, y)
+        const casillero = this.slots?.[y - 1]?.[x - 1]
+        if (!casillero) {
+            return console.log("coordenadas inválidas")
+        }
+
+        //Los 3 if siguientes deberian ser manejados por el CasilleroInventario
+        //Debido a que son responsabilidades del mismo casillero
+
+        casillero.dropItem(id_item, cantidad)
+
+        //Todos estos if pasan a ser parte del metodo dropItem del casillero
+
+        if (casillero.isEmpty()) {
+            return console.log("el casillero esta vacio")
+        }
+        if (casillero.isAlready(id_item)) {
+            //asegurarse de tener la validacion de minimo, si la cantidad es menor a 0 o 0 significa que el casillero deberia ser vaciado
+            casillero.restarCantidad(cantidad)
+        } else {
+            return console.log("el item con el id: " + id_item + " no se encuentra en el casillero pero esta el item con el id:" + casillero.id_item)
+        }
+
+    }
+*/
+
+
+
+/*
 - Agregar un metodo que permita cambiar un item por otro de casillero
     changeItem(id_item, x, y, cantidad)
         - Validar que el casillero este con otro item distinto al que se quiere agregar (Y no vacio). Y si la operacion se puede resolver modificar el casillero y retornar el id_item antiguo y la cantidad antigua
 
+    changeItem(id_item, x, y, cantidad) {
+        //Podrias tener un metodo tipo Inventario.findSlot(x, y)
+        const casillero = this.slots?.[y - 1]?.[x - 1]
+        if (!casillero) {
+            return console.log("coordenadas inválidas")
+        }
+
+        const { id_item, cantidad } = casillero.replaceItem(id_item, cantidad)
+        if(item_id === null) {
+            return console.log("casillero vacio")
+        }
+        return {id_item, cantidad}
+    }
+
+    class CasilleroInventario{
+
+        replaceItem(id_item, cantidad) {
+            if (this.isAlready(id_item)) {
+                return { id_item: this.id_item, cantidad: this.cantidad }
+            }
+            else {
+                return { id_item: null, cantidad: 0 }
+            }
+        }
+    }
+*/
+
+
+
+/*
 Aclaraciones:
     - Validar que item exista
     - Validar que posicion exista
