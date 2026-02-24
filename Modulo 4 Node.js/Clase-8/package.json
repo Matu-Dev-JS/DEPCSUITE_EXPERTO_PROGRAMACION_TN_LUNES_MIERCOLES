@@ -1,0 +1,19 @@
+{
+  "name": "clase-8",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "node --watch src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "mysql2": "^3.18.0"
+  }
+}
