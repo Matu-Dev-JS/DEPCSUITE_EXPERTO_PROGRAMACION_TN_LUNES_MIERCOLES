@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const productSchema = mongoose.Schema(
+const productSchema = new mongoose.Schema(
     {
         fk_owner_id: {
             type: mongoose.Schema.Types.ObjectId, 
