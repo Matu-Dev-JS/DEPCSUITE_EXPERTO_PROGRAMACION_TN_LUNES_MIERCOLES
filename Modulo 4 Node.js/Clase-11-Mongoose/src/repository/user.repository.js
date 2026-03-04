@@ -45,7 +45,7 @@ class UserRepository{
             user_id,
             update_data,
             {
-                new: true //Actualizar y retornar el dato actualizado
+                returnDocument: 'after'
             }
         )
         return updated_user
