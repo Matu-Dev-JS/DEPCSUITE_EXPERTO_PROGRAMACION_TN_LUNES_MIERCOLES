@@ -38,6 +38,11 @@ class MissionRepository{
         const deleted_mission = await Mission.findByIdAndDelete(mission_id)
         return deleted_mission
     }
+
+    async getMissionsByUserId(user_id){
+        const missions = await Mission.find({fk_user_id: user_id})
+        return missions
+    }
 }
 const missionRepository = new MissionRepository()
 export default missionRepository

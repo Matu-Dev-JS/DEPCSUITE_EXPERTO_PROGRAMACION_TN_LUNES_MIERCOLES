@@ -10,7 +10,6 @@ Desarrollar los repositories:
         - updateStatus(mission_id, status: boolean) => Si finaliza colocar una finished_date como la fecha actual, si es false se deja en null
         - deleteById(mission_id)
 
-
         - getMissionsByUserId(user_id) => Devuelve todas las misiones asociadas al usuario
         
     TaskRepository

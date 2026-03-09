@@ -1,4 +1,6 @@
 import mongoose from "mongoose"
+import { TASK_DIFFICULTY, TASK_STATUS } from "../constants/task.constant.js"
+
 const taskSchema = new mongoose.Schema({
     fk_mission_id:{
         type: mongoose.Schema.Types.ObjectId,
@@ -9,13 +11,13 @@ const taskSchema = new mongoose.Schema({
         required: true
     },
     created_at:{
-        type: date,
+        type: Date,
         default: Date.now,
     },
     status:{
         type: String,
-        enum: ["Pendiente", "En progreso", "Completada"],
-        default: "Pendiente"
+        enum: [TASK_STATUS.PENDING, TASK_STATUS.IN_PROGRESS, TASK_STATUS.COMPLETED],
+        default: TASK_STATUS.PENDING
     },
     finish_date: {
         type: Date,
@@ -29,8 +31,8 @@ const taskSchema = new mongoose.Schema({
     },
     difficulty: {
         type: String,
-        enum: ["Fácil", "Medio", "Difícil"],
-        default: "Fácil",
+        enum: [TASK_DIFFICULTY.EASY, TASK_DIFFICULTY.MEDIUM, TASK_DIFFICULTY.HARD],
+        default: TASK_DIFFICULTY.EASY,
     }
 })
 const Task = mongoose.model("Task", taskSchema)

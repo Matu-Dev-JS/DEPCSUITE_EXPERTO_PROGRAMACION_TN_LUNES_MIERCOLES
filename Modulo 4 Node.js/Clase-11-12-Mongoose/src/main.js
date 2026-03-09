@@ -1,6 +1,7 @@
 import ENVIRONMENT from "./config/environment.config.js";
 import connectMongoDB from "./config/mongoDB.config.js";
 import User from "./models/user.model.js";
+import taskRepository from "./repository/task.repository.js";
 import userReository from "./repository/user.repository.js";
 
 
@@ -19,3 +20,4 @@ connectMongoDB()
 //userRepository.findById('69a8b94b47ec97a2c30331ec').then((result) => console.log(result))
 //userRepository.findByEmail('juan@gmail.com').then((result) => console.log(result))
 //userRepository.getAll().then((result) => console.log(result))
+taskRepository.updateStatus(1, 'pepito')
