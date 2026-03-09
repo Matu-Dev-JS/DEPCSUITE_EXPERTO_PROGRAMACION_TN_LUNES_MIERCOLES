@@ -1,12 +1,10 @@
 import ENVIRONMENT from "./config/environment.config.js";
 import connectMongoDB from "./config/mongoDB.config.js";
 import User from "./models/user.model.js";
-import userRepository from "./repository/user.repository.js";
-
+import userReository from "./repository/user.repository.js";
 
 
 connectMongoDB()
-
 
 /* userRepository.create('juan', 'juan123', 'juan@gmail.com', '1222321321') */
 //userRepository.deleteById('69a8b66a2b2fc672c1973bf2')
