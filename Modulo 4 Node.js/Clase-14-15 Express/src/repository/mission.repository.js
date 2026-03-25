@@ -43,6 +43,11 @@ class MissionRepository{
         const missions = await Mission.find({fk_user_id: user_id})
         return missions
     }
+
+    async getById (mission_id){
+        console.log(mission_id)
+        return await Mission.findById(mission_id)
+    }
 }
 const missionRepository = new MissionRepository()
 export default missionRepository

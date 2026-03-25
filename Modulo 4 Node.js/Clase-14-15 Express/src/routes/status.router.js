@@ -1,5 +1,6 @@
 import express from 'express'
 import statusController from '../controllers/status.controller.js'
+import randomMiddleware from '../middlewares/random.middleware.js'
 
 const statusRouter = express.Router()
 
@@ -26,7 +27,8 @@ Por ejemplo:
 
 */
 
-
-statusRouter.get('/', statusController.get)
+//Primero pasa por el random middleware donde se determina mi suerte
+//Si tengo suerte pasara al metodo .get del statusController
+statusRouter.get('/', randomMiddleware, statusController.get)
 
 export default statusRouter

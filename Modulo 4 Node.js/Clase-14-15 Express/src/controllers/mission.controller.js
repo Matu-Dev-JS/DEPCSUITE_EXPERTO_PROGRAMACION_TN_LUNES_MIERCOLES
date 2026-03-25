@@ -9,16 +9,6 @@ class MissionController {
             const { title, description } = request.body
 
 
-            if (!user_id) {
-                throw new ServerError('Falta el id de usuario', 400)
-            }
-            
-            const user_found = await userRepository.findById(user_id)
-
-            if (!user_found) {
-                throw new ServerError( 'Usuario no encontrado', 404)
-            }
-
             const new_mission = await missionRepository.create(
                 user_id,
                 {
@@ -59,6 +49,50 @@ class MissionController {
             }
         }
 
+    }
+
+    async getById(request, response) {
+        try {   
+            const user = request.user
+            const {mission_id} = request.params
+
+            const mission = await missionRepository.getById(mission_id)
+     
+            if(!mission.fk_user_id.equals(user.id)){
+                throw new ServerError('El usuario no puede hacer esta operacion', 403)
+            }
+            response.send(
+                {
+                    ok: true, 
+                    status: 200,
+                    message: "Mision obtenida",
+                    data: {
+                        mission
+                    }
+                }
+            )
+        }
+        catch (error) {
+            if (error instanceof ServerError) {
+                response.status(error.status).send(
+                    {
+                        ok: false,
+                        status: error.status,
+                        message: error.message
+                    }
+                )
+            }
+            else {
+                console.log(error)
+                response.status(500).send(
+                    {
+                        ok: false,
+                        status: 500,
+                        message: "Error interno del servidor"
+                    }
+                )
+            }
+        }
     }
 }
 

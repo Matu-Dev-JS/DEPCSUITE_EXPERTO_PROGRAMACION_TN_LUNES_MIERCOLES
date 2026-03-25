@@ -10,6 +10,9 @@ connectMongoDB()
 
 const app = express()
 
+/* 
+Esto es un middleware global que se antepone a todos los controladores y revisa si el body de la request esta en tipo JSON, en caso de serlo no transforma a objeto de JS
+*/
 app.use(express.json())
 
 
@@ -34,12 +37,44 @@ En caso de coincidir las credenciales daremos datos del usuario (como el id)
 
 
 POST /api/missions/:user_id
+    - Validar que el usuario exista
+
     body: {
         title,
         description
     }
     Crear una nueva mision
 
+GET /api/mission/:user_id
+    - Validar que el usuario exista
+
+    Poder obtener todas las misiones de X usuario
+
+
+//Tarea/Ejercitacion
+GET /api/mission/:user_id/:mission_id
+    - Validar que el usuario exista
+
+    Poder traer el detalle de una mision
+
+PUT /api/mission/:user_id/:mission_id
+    - Validar que el usuario exista
+
+    Actualizar una mision de x usuario por ID de mision
+
+DELETE /api/mission/:user_id/:mission_id
+    - Validar que el usuario exista
+
+    Eliminar una mision de x usuario por ID de mision
+
+
+
+Si sabemos que validar usuario es algo que vamos a hacer muchas veces me conviene plantearlo como middleware
+El middleware es como un controlador pero que se antepone al controlador final
+EJ: 
+    validateUserMiddleware => Extraer dinero
+    validateUserMiddleware => Depositar dinero
+ValidateUserMiddleware es un middleware que configuraremos a nivel de ruta o endpoint, NO ES GLOBAL, no todos los endpoints necesitan validar si el usuario existe, por ejemplo login, logout
 */
 
 
