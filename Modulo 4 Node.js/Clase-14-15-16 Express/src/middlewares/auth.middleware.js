@@ -1,4 +1,5 @@
 /* 
+NO ES SEGURO AUN
 Quiero que mi middleware valide si el user_id pasado por request.params es un user id valido, osea que corresponda a algun usuario de la aplicacion
 En caso de existir debera guardar en request la informacion del usuario (sesion)
 */

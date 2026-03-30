@@ -5,12 +5,12 @@ import userRepository from "../repository/user.repository.js";
 class MissionController {
     async create(request, response) {
         try {
-            const { user_id } = request.params
+            const { _id } = request.user
             const { title, description } = request.body
 
 
             const new_mission = await missionRepository.create(
-                user_id,
+                _id,
                 {
                     title,
                     description

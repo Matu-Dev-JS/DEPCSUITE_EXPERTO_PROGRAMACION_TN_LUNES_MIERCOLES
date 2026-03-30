@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema(
         telephone: {
             type: String,
             required: true
+        },
+        role: {
+            default: 'free',
+            enum: ['premium', 'free'],
+            type: String,
+            required: true
         }
     }
 )

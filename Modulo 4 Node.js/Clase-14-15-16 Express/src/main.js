@@ -11,7 +11,7 @@ connectMongoDB()
 const app = express()
 
 /* 
-Esto es un middleware global que se antepone a todos los controladores y revisa si el body de la request esta en tipo JSON, en caso de serlo no transforma a objeto de JS
+Esto es un middleware global que se antepone a todos los controladores y revisa si el body de la request esta en tipo JSON, en caso de serlo lo transforma a objeto de JS
 */
 app.use(express.json())
 
