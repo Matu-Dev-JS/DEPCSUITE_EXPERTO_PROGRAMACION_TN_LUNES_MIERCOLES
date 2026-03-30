@@ -8,13 +8,13 @@ const missionRouter = express.Router()
 
 missionRouter.post(
     '/:user_id',
-    authMiddleware,
+    authMiddleware(['premium']),
     missionController.create
 )
 
 missionRouter.get(
     '/:user_id/:mission_id',
-    authMiddleware,
+    authMiddleware(),
     missionController.getById
 )
 
