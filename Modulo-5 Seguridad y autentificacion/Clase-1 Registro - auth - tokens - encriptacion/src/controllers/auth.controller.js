@@ -60,6 +60,11 @@ class AuthController {
                 telephone
             } = request.body
 
+            const user_found = await userRepository.findByEmail(email)
+            if(user_found){
+                throw new ServerError('Usuario con mail ya registrado', 400)
+            }
+
             const hashed_password = await bcrypt.hash(password, 12)
 
             await userRepository.create(
