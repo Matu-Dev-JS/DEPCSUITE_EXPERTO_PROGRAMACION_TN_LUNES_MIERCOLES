@@ -20,6 +20,9 @@ class AuthService {
         if (!isSamePassword) {
             throw new ServerError('Credenciales incorrectas', 401)
         }
+        if(!user_found.email_verified){
+            throw new ServerError('Usuario sin mail verificado', 401)
+        }
 
         const auth_token = jwt.sign(
             { //El objeto que se guardara en el token

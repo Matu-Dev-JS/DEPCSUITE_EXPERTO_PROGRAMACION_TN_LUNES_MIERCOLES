@@ -126,6 +126,60 @@ class AuthController {
             }
         }
     }
+    async verifyEmail(request, response){
+        try{
+            const {verification_token} = request.query
+            if(!verification_token){
+                throw new ServerError('Falta el token de verificacion', 400)
+            }
+            //Si la verficacion de clave falla se lanza un JSONWebTokenError 
+            const payload = jwt.verify(verification_token, ENVIRONMENT.JWT_SECRET_KEY)
+            const {email} = payload
+            const user_found = await userRepository.findByEmail(email)
+            if(!user_found){
+                throw new ServerError("Usuario no encontrado", 404)
+            }
+            if(user_found.email_verified){
+                throw new ServerError("Usuario ya verificado", 401)
+            }
+            await userRepository.updateById(user_found._id, {email_verified: true})
+            return response.status(200).json({
+                ok: true,
+                status: 200,
+                message: "Mail verificado"
+            })
+        }
+        catch (error) {
+            if( error instanceof jwt.JsonWebTokenError){
+                return response.status(401).send(
+                    {
+                        ok: false,
+                        status: 401,
+                        message: 'Token invalido'
+                    }
+                )
+            }
+            if (error instanceof ServerError) {
+                response.status(error.status).send(
+                    {
+                        ok: false,
+                        status: error.status,
+                        message: error.message
+                    }
+                )
+            }
+            else {
+                console.error("Error en auth.login", error)
+                response.status(500).send(
+                    {
+                        ok: false,
+                        status: 500,
+                        message: "Error interno del servidor"
+                    }
+                )
+            }
+        }
+    }
 }
 
 const authController = new AuthController()
