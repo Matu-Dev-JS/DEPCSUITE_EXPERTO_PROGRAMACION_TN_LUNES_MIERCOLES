@@ -4,9 +4,7 @@ El controlador tiene la responsabilidad de manejar las consultas al servidor y e
 */
 class StatusController {
     get(request, response) {
-        const {suerte, nro_random} = request
-        console.log("Suerte: " + suerte )
-        console.log("Numero aleatorio generado: " + nro_random )
+        
         response.status(200).send(
             {
                 ok: true,

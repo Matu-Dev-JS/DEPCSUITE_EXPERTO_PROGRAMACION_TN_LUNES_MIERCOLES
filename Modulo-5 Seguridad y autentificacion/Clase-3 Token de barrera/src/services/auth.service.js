@@ -28,7 +28,8 @@ class AuthService {
             { //El objeto que se guardara en el token
                 id: user_found._id,
                 email: user_found.email,
-                created_at: user_found.created_at
+                created_at: user_found.created_at,
+                role: user_found.role
             },
             ENVIRONMENT.JWT_SECRET_KEY
         )

@@ -1,38 +1,8 @@
-/* 
-NO ES SEGURO AUN
-Quiero que mi middleware valide si el user_id pasado por request.params es un user id valido, osea que corresponda a algun usuario de la aplicacion
-En caso de existir debera guardar en request la informacion del usuario (sesion)
-*/
 
+import ENVIRONMENT from "../config/environment.config.js"
 import ServerError from "../helpers/serverError.helper.js"
 import userRepository from "../repository/user.repository.js"
-
-/* 
-Este authMiddleware tendra verificacion de existencia de usuario y TAMBIEN cumplimiento de rol
-Es decir si el rol no es suficiente para hacer la operacion el middleware debera rechazar la consulta con status 403 prohebido
-Se pasara al middleware la lista de roles validos y el middleware validara, en caso de no enviar lista o enviarla vacia dejara que cualquier usuario logueado haga la operacion
-
-Como puedo hacer que un middleware sea configurable?
-EJ: 
-- authMiddleware(["free"]) => Solo dejara que la operacion la haga el free
-- authMiddleware([]) => Cualquiera haga la operacion
-- authMiddleware(["premium", 'free']) => Solo los premium o free role podran hacer la operacion
-
-*/
-//La tecnica es que tu middleware retorne un middleware
-/* export function middleware(params){
-    return function (request, response, next){
-        console.log(params)
-        next()
-    }
-} */
-//middleware('pepe')
-//Retorna
-/* 
-return function (request, response, next){
-    next()
-}
-*/
+import jwt from 'jsonwebtoken'
 
 function authMiddleware(valid_roles = []) {
     return async function (request, response, next) {
@@ -49,11 +19,11 @@ function authMiddleware(valid_roles = []) {
 
 
             //Si hay roles validos pero el rol del usuario NO esta incluido dentro de ellos entonces tiramos error
-            if(
-                valid_roles.length > 0 
-                && 
+            if (
+                valid_roles.length > 0
+                &&
                 !(valid_roles.includes(user.role))
-            ){
+            ) {
                 throw new ServerError('Usuario no tiene permisos para esta operacion', 403)
             }
 
@@ -87,69 +57,120 @@ function authMiddleware(valid_roles = []) {
     }
 }
 
+export function verifyAuthTokenMiddleware(valid_roles = []) {
+
+    return function (request, response, next) {
+        try {
+            //request.headers es el objeto que guarda la lista de headers de la consulta
+            //request.headers.authorization es donde esperamos recibir el token de autentificacion
+            const auth_header = request.headers.authorization
+            if (!auth_header) {
+                throw new ServerError('Falta token de autentificacion', 401)
+            }
 
 
-/* 
-AuthMiddleware sin verificacion de role, solo verifica que exista el usuario
+            const auth_token = auth_header.split(' ')[1]
+            if (!auth_token) {
+                throw new ServerError('Falta token de autentificacion', 401)
+            }
 
-async function authMiddleware(request, response, next) {
-    try {   
-        const {user_id} = request.params
-        if(!user_id){
-            throw new ServerError('No has proporcionado el id de usuario', 400)
+            //Verifico el token
+            const user = jwt.verify(auth_token, ENVIRONMENT.JWT_SECRET_KEY)
+
+            if(valid_roles.length > 0 && !valid_roles.includes(user.role)){
+                throw new ServerError('No tienes los permisos suficientes', 403)
+            }
+
+            //Guardo la sesion del usuario en la request
+            request.user = user
+            console.log(user)
+            next()
         }
-        const user = await userRepository.findById(user_id)
+        catch (error) {
+            if (error instanceof jwt.JsonWebTokenError) {
+                return response.status(401).json({
+                    ok: false,
+                    status: 401,
+                    message: "Token invalido"
+                })
+            }
+            else if (error instanceof ServerError) {
+                response.status(error.status).send(
+                    {
+                        ok: false,
+                        status: error.status,
+                        message: error.message
+                    }
+                )
+            }
+            else {
+                response.status(500).send(
+                    {
+                        ok: false,
+                        status: 500,
+                        message: "Error interno del servidor"
+                    }
+                )
+            }
+        }
+    }
+}
 
-        if(!user){
-            throw new ServerError('El usuario no existe', 404)
+/*
+Auth middleware de token VERSION SIMPLIFICADA (SIN ROLES)
+export function verifyAuthTokenMiddleware (request, response, next){
+    try{
+        //request.headers es el objeto que guarda la lista de headers de la consulta
+        //request.headers.authorization es donde esperamos recibir el token de autentificacion
+        const auth_header = request.headers.authorization
+        if(! auth_header){
+            throw new ServerError('Falta token de autentificacion', 401)
         }
 
-        //Guardo el user dentro de la request (Para que controladores puedan acceder a quien hizo la consulta)
+
+        const auth_token = auth_header.split(' ')[1]
+        if(!auth_token){
+            throw new ServerError('Falta token de autentificacion', 401)
+        }
+
+        //Verifico el token
+        const user = jwt.verify(auth_token, ENVIRONMENT.JWT_SECRET_KEY)
+
+        //Guardo la sesion del usuario en la request
         request.user = user
 
-        //Continuo al siguiente controlador
         next()
-
     }
-    catch (error) {
-        if (error instanceof ServerError) {
-            response.status(error.status).send(
-                {
-                    ok: false,
-                    status: error.status,
-                    message: error.message
-                }
-            )
+    catch(error){
+        if( error instanceof jwt.JsonWebTokenError){
+            return response.status(401).json({
+                ok: false,
+                status: 401,
+                message: "Token invalido"
+            })
         }
-        else {
-            response.status(500).send(
-                {
-                    ok: false,
-                    status: 500,
-                    message: "Error interno del servidor"
-                }
-            )
-        }
+        else if (error instanceof ServerError) {
+                response.status(error.status).send(
+                    {
+                        ok: false,
+                        status: error.status,
+                        message: error.message
+                    }
+                )
+            }
+            else {
+                response.status(500).send(
+                    {
+                        ok: false,
+                        status: 500,
+                        message: "Error interno del servidor"
+                    }
+                )
+            }
     }
-} */
+}
+ */
 
 export default authMiddleware
 
 
-/* 
-Ejemplo simple
-function alertar (mensaje){
-    return function (){
-        console.log(mensaje)
-    }
-}
-
-document.addEventListener(
-    'click',
-    alertar('pepe')
-)
-
-document.addEventListener(
-    'dbclick',
-    alertar('juan')
-) */

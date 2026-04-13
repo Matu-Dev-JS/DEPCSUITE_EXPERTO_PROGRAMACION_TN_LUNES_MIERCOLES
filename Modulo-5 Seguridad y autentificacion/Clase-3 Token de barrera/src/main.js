@@ -12,7 +12,7 @@ connectMongoDB()
 const app = express()
 
 /* 
-Esto es un middleware global que se antepone a todos los controladores y revisa si el body de la request esta en tipo JSON, en caso de serlo lo transforma a objeto de JS
+Esto es un middleware global que se antepone a todos los controladores y revisa si el header "Content-Type" es "application/json"
 */
 app.use(express.json({limit: '5gb'}))
 
@@ -25,74 +25,8 @@ app.use('/api/auth', authRouter)
 app.use('/api/missions', missionRouter)
 
 
-/* 
-Desarrollar una API para gestionar misiones y tareas
-
-/api/auth/login
-    body: {
-        email,
-        password
-    }
-    
-En caso de coincidir las credenciales daremos datos del usuario (como el id)
-
-
-POST /api/missions/:user_id
-    - Validar que el usuario exista
-
-    body: {
-        title,
-        description
-    }
-    Crear una nueva mision
-
-GET /api/mission/:user_id
-    - Validar que el usuario exista
-
-    Poder obtener todas las misiones de X usuario
-
-
-//Tarea/Ejercitacion
-GET /api/mission/:user_id/:mission_id
-    - Validar que el usuario exista
-
-    Poder traer el detalle de una mision
-
-PUT /api/mission/:user_id/:mission_id
-    - Validar que el usuario exista
-
-    Actualizar una mision de x usuario por ID de mision
-
-DELETE /api/mission/:user_id/:mission_id
-    - Validar que el usuario exista
-
-    Eliminar una mision de x usuario por ID de mision
-
-
-
-Si sabemos que validar usuario es algo que vamos a hacer muchas veces me conviene plantearlo como middleware
-El middleware es como un controlador pero que se antepone al controlador final
-EJ: 
-    validateUserMiddleware => Extraer dinero
-    validateUserMiddleware => Depositar dinero
-ValidateUserMiddleware es un middleware que configuraremos a nivel de ruta o endpoint, NO ES GLOBAL, no todos los endpoints necesitan validar si el usuario existe, por ejemplo login, logout
-*/
-
-
 app.listen(ENVIRONMENT.PORT, () => {
     console.log(`El servidor se esta escuchando en el puerto ${ENVIRONMENT.PORT}`)
 })
 
 
-/* 
-mailTransporter.sendMail(
-    {
-        subject: 'mail de prueba',
-        to: 'mati.dev.gimenez@gmail.com',
-        from: ENVIRONMENT.MAIL_USERNAME,
-        html: `
-            <h1>Hola desde node.js</h1>
-        `
-    }
-) 
-    */
