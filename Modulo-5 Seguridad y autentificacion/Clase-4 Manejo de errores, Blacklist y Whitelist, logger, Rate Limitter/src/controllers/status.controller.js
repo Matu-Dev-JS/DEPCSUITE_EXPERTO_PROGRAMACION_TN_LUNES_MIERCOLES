@@ -1,11 +1,24 @@
+import LOG_SEVERITY from "../constants/logsSeverity.constant.js"
 import ServerError from "../helpers/serverError.helper.js"
+import logAction from "../services/audit.service.js"
 
 /* 
 El controlador tiene la responsabilidad de manejar las consultas al servidor y emitir respuestas
 */
 class StatusController {
-    get(request, response, next) {
+    async get(request, response, next) {
         try {
+            await logAction(
+                request,
+                {
+                    action: 'GET status',
+                    entity: 'Status',
+                    entity_id: null,
+                    detail: 'Es un get',
+                    severity: LOG_SEVERITY.INFO,
+                    success: true
+                }
+            )
             response.status(200).send(
                 {
                     ok: true,

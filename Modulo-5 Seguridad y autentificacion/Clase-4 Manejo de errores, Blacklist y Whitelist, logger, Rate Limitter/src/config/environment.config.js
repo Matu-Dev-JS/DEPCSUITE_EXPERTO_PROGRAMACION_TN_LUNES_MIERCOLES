@@ -9,7 +9,8 @@ const ENVIRONMENT = {
     PORT: process.env.PORT,
     MAIL_PASSWORD: process.env.MAIL_PASSWORD,
     MAIL_USERNAME: process.env.MAIL_USERNAME,
-    URL_BACKEND: process.env.URL_BACKEND
+    URL_BACKEND: process.env.URL_BACKEND,
+    MODE: process.env.MODE
 }
 
 export default ENVIRONMENT
