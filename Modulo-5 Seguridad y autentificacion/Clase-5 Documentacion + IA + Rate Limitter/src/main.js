@@ -7,10 +7,20 @@ import errorHandlerMiddleware from "./middlewares/errorHandler.middleware.js";
 import cors from 'cors'
 import ServerError from "./helpers/serverError.helper.js";
 import rateLimit from "express-rate-limit";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./config/swagger.config.js";
 
 connectMongoDB()
 
 const app = express()
+
+
+//Si entran a la ruta de /docs se va a servir la pantalla de documentacion de swagger
+app.use(
+    '/docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec)
+)
 
 /* 
 Cors permite que otros dominios puedan hacer peticiones a mi servidor
