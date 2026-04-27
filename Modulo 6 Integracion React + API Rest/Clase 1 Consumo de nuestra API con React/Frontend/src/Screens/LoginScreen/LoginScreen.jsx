@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { login } from '../../services/authService'
 import useRequest from '../../hooks/useRequest'
+import { useNavigate } from 'react-router'
 
 const LoginScreen = () => {
+    const navigate = useNavigate()
 
     /* 
     OBJETIVO:
@@ -27,6 +29,23 @@ const LoginScreen = () => {
         )
 
     }
+
+    //Se ejecuta cuando cambia el response
+    useEffect (
+        () => {
+            //La api respondio bien
+            if(response && response.ok){
+
+                const auth_token = response.data.auth_token
+                //Guarda el token de autenticacion en el localStorage
+                //El localstorage es un almacenamiento que nos permite guardar strings (clave, valor) en el navegador
+                localStorage.setItem('auth_token', auth_token)
+                //Redirecciona a la pantalla principal
+                navigate('/home')
+            }
+        },
+        [response]
+    )
     return (
         <div>
             <h1>Iniciar sesion</h1>
