@@ -25,11 +25,11 @@ app.use(
 /* 
 Cors permite que otros dominios puedan hacer peticiones a mi servidor
 */
-/* 
+
 app.use(
     cors()
 ) 
-*/
+
 
 /* 
 Permitir si no esta en la lista negra
@@ -59,7 +59,7 @@ app.use(
 ) */
 
 //whitelist
-const allowedDomains = [
+/* const allowedDomains = [
     'http://127.0.0.1:5500'
 ]
 app.use(
@@ -79,8 +79,8 @@ app.use(
             }
         }
     )
-)
-
+) */
+/* 
 const api_keys = [
     {
         value: 'pampa',
@@ -102,7 +102,7 @@ app.use(
         }
         throw new ServerError('Api key invalida', 401)
     }
-)
+) */
 
 /* 
 Configuracion el middleware de rateLimitter (limitar cantidad de consultas en un cierto periodo de tiempo)

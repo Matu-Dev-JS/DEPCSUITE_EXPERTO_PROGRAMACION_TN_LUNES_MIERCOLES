@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { login } from '../../services/authService'
+import useRequest from '../../hooks/useRequest'
 
 const LoginScreen = () => {
 
@@ -9,13 +11,21 @@ const LoginScreen = () => {
     
     */
 
-    function handleSubmit (event){
+    const {response, error, loading, sendRequest} = useRequest()
+
+
+    async function handleSubmit (event){
         event.preventDefault()
+        
         const datos_formulario = {
             email: event.target.email.value,
             password: event.target.password.value
         }
-        console.log('Datos del formulario', datos_formulario)
+
+        sendRequest(
+            async () => await login(datos_formulario)
+        )
+
     }
     return (
         <div>
@@ -29,7 +39,22 @@ const LoginScreen = () => {
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" />
                 </div>
-                <button type='submit'>Iniciar sesion</button>
+                {
+                    error
+                    && 
+                    <span style={{color: 'red'}}>Error: {error.message}</span>
+                }
+                <br/>
+                <button 
+                    type='submit' 
+                    disabled={loading} 
+                >
+                    { 
+                        loading
+                        ? 'Cargando'
+                        : 'Iniciar sesion'
+                    }
+                </button>
             </form>
         </div>
     )
