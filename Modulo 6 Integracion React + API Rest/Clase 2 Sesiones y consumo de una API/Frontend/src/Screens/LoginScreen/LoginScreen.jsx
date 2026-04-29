@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { login } from '../../services/authService'
 import useRequest from '../../hooks/useRequest'
 import { useNavigate } from 'react-router'
+import { AuthContext } from '../../Context/AuthContext'
 
 const LoginScreen = () => {
     const navigate = useNavigate()
@@ -14,7 +15,7 @@ const LoginScreen = () => {
     */
 
     const {response, error, loading, sendRequest} = useRequest()
-
+    const {login: loginContext} = useContext(AuthContext)
 
     async function handleSubmit (event){
         event.preventDefault()
@@ -30,17 +31,10 @@ const LoginScreen = () => {
 
     }
 
-    //Se ejecuta cuando cambia el response
     useEffect (
         () => {
-            //La api respondio bien
             if(response && response.ok){
-
-                const auth_token = response.data.auth_token
-                //Guarda el token de autenticacion en el localStorage
-                //El localstorage es un almacenamiento que nos permite guardar strings (clave, valor) en el navegador
-                localStorage.setItem('auth_token', auth_token)
-                //Redirecciona a la pantalla principal
+                loginContext(response.data.auth_token)
                 navigate('/home')
             }
         },

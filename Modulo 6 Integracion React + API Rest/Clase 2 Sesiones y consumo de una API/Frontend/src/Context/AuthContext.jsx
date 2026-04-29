@@ -1,20 +1,45 @@
 import { createContext, useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext({
-    isLogged: false
+    isLogged: false,
+    login: (response) => {},
+    logout: () => {},
+    user: null
 })
 
 const AuthContextProvider = () => {
-    //obtenemos el token guardado
-    const auth_token = localStorage.getItem('auth_token')
+    const [isLogged, setIsLogged] = useState(
+        Boolean(
+            localStorage.getItem('auth_token')
+        )
+    )
 
-    //Este estado servira para saber si el usuario esta logueado o no
-    //Si el token estaba guardado entonces para nosotros esta logueado, sino no
-    const [isLogged, setIsLogged] = useState(Boolean(auth_token))
+    //Datos de sesion del usuario asociados al token
+    const [user, setUser] = useState(
+        localStorage.getItem('auth_token') 
+        ? jwtDecode(
+            localStorage.getItem('auth_token')
+        )
+        : null
+    )
+
+    function login (token){
+        setIsLogged(true)
+        localStorage.setItem('auth_token', token)
+    }
+
+    function logout (){
+        setIsLogged(false)
+        localStorage.removeItem('auth_token')
+    }
     
     const providerValues = {
-        isLogged
+        isLogged,
+        login, 
+        logout,
+        user
     }
     return (
         <AuthContext.Provider value={providerValues}>
