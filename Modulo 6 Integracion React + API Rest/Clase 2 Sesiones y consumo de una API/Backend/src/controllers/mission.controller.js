@@ -1,6 +1,4 @@
-import ServerError from "../helpers/serverError.helper.js";
-import missionRepository from "../repository/mission.repository.js";
-import userRepository from "../repository/user.repository.js";
+import missionService from "../services/mission.service.js";
 
 class MissionController {
     async create(request, response, next) {
@@ -8,8 +6,7 @@ class MissionController {
             const { id } = request.user
             const { title, description } = request.body
 
-
-            const new_mission = await missionRepository.create(
+            const new_mission = await missionService.createMission(
                 id,
                 {
                     title,
@@ -36,13 +33,9 @@ class MissionController {
 
     async getById(request, response, next) {
         try {   
-            const user = request.user
             const {mission_id} = request.params
 
-            const mission = await missionRepository.getById(mission_id)
-          /*   if(!mission.fk_user_id.equals(user.id)){
-                throw new ServerError('El usuario no puede hacer esta operacion', 403)
-            } */
+            const mission = await missionService.getMissionById(mission_id)
             response.send(
                 {
                     ok: true, 
@@ -58,7 +51,27 @@ class MissionController {
             next(error)
         }
     }
+
+    async getAllByUserId(request, response, next) {
+        try {
+            const { id } = request.user
+            const missions = await missionService.getAllMissions(id)
+            response.send(
+                {
+                    ok: true,
+                    status: 200,
+                    message: "Misiones obtenidas",
+                    data: {
+                        missions
+                    }
+                }
+            )
+        }
+        catch (error) {
+            next(error)
+        }
+    }
 }
 
 const missionController = new MissionController();
-export default missionController
+export default missionController

@@ -14,6 +14,12 @@ missionRouter.post(
 )
 
 missionRouter.get(
+    '/',
+    verifyAuthTokenMiddleware(),
+    missionController.getAllByUserId
+)
+
+missionRouter.get(
     '/:mission_id',
     verifyAuthTokenMiddleware(),
     limiterMiddleware,
