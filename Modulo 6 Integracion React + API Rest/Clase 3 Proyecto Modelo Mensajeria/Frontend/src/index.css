@@ -1,0 +1,52 @@
+:root {
+  --slack-primary: #4A154B;
+  --slack-secondary: #611f69;
+  --slack-bg: #FFFFFF;
+  --slack-sidebar: #3F0E40;
+  --slack-sidebar-hover: #350d36;
+  --slack-text: #1D1C1D;
+  --slack-text-secondary: #616061;
+  --slack-border: #E0E0E0;
+  --slack-active: #1264A3;
+  --slack-hover: #F8F8F8;
+  --slack-success: #007A5A;
+  --slack-error: #E01E5A;
+  --slack-input-bg: #FFFFFF;
+  --slack-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--slack-font);
+  background-color: var(--slack-bg);
+  color: var(--slack-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--slack-active);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--slack-font);
+}
+
+input, textarea {
+  font-family: var(--slack-font);
+}
