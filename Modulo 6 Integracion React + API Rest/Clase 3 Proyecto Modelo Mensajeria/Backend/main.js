@@ -101,7 +101,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
 
 app.use(cors())
 app.use(express.json())
-app.use(verifyApiKeyMiddleware)
+app.use(verifyApiKeyMiddleware(['/api/auth/verify-email']))
 
 app.get('/', (request, response) => {
     response.json({

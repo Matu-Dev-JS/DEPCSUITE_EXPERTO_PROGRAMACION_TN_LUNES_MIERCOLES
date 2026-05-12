@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import useForm from '../../hooks/useForm'
 import useRequest from '../../hooks/useRequest'
 import { login } from '../../services/authService'
 import useLogin from '../../hooks/useLogin'
-import { Toast } from '../../Components/Toast/Toast'
-import { useToast } from '../../hooks/useToast'
 import './LoginScreen.css'
 
 const LoginScreen = () => {
-    const [searchParams] = useSearchParams()
-    const { toast, showToast, hideToast, isClosing, onAnimationEnd } = useToast()
     const {
         form_state,
         onChangeFieldValue,
@@ -20,23 +16,8 @@ const LoginScreen = () => {
         response
     } = useLogin()
 
-    useEffect(() => {
-        if (searchParams.get('from') === 'email-validated') {
-            showToast('Tu correo electrónico ha sido validado exitosamente.')
-        }
-    }, [searchParams])
-
     return (
-        <>
-            <Toast
-                show={toast.show}
-                message={toast.message}
-                type={toast.type}
-                hideToast={hideToast}
-                isClosing={isClosing}
-                onAnimationEnd={onAnimationEnd}
-            />
-            <div className="login-container">
+        <div className="login-container">
             <div className="login-card">
                 <header className="login-header">
                     <h1>Inicia sesión</h1>
@@ -86,7 +67,6 @@ const LoginScreen = () => {
                 </footer>
             </div>
         </div>
-    </>
     )
 }
 
